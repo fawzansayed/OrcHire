@@ -13,41 +13,61 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
+  // ---------------- DATA ----------------
   const trustedCompanies = [
-    { name: "artha", logo: "/arthalogogreyscale.png" },
-    { name: "The Chief Circle", logo: "/the-chief-circle-logo.jpg" },
-    { name: "Peak XV", logo: "/peak-xv-logo.jpg" },
-    { name: "Settaris Venture Partner", logo: "/settaris-venture-partner-logo.jpg" },
-    { name: "Multiplier", logo: "/multiplier-logo.jpg" },
-    { name: "X-10x", logo: "/x-10x-logo.jpg" },
-    { name: "ThoughtSpot", logo: "/thoughtspot-logo.jpg" },
-    { name: "SalarySe", logo: "/salaryse-logo.jpg" },
-    { name: "eAmbak", logo: "/eambak-logo.jpg" },
-    { name: "RazorPay", logo: "/Razorpaylogo.png" },
-    { name: "DealShare", logo: "/DealShareLogoGreyscale.png" },
-    { name: "Quince", logo: "/QuincelogogreyScale.png" }
+    { name: "ArisInfra",        logo: "/logo1/ArisInfra.png" },
+    { name: "arya.ag",          logo: "/logo1/arya.ag.png" },
+    { name: "Captain Fresh",    logo: "/logo1/CaptainFresh.png" },
+    { name: "RED Health",       logo: "/logo1/RedHealth.png" },
+    { name: "Razorpay",         logo: "/logo1/RazorPay.png" },
+    { name: "DealShare",        logo: "/logo1/DealShare.png" },
+    { name: "artha",            logo: "/logo1/artha.png" },
+    { name: "The Chief Circle", logo: "/logo1/TheChiefCircle.png" },
   ]
 
   const mediaPartners = [
-    { name: "TechCrunch", logo: "/TechieCrunch-log.png" },
-    { name: "Forbes", logo: "/forbes-logo.png" },
-    { name: "Wired", logo: "/wired-logo.jpg" },
-    { name: "VentureBeat", logo: "/VentureBeats-logo.png" },
-    { name: "MIT Tech Review", logo: "/mit-tech-review-logo.jpg" },
-    { name: "Harvard Business", logo: "/harvard-business-logo.jpg" },
-    { name: "Fast Company", logo: "/fast-company-logo.jpg" },
-    { name: "Reuters", logo: "/reuters-logo.png" },
-    { name: "Bloomberg", logo: "/bloomberg-logo.jpg" },
-    { name: "The Verge", logo: "/the-verge-logo.jpg" },
-    { name: "Axios", logo: "/axios-logo.png" }
+    { name: "Bharat Fast",     logo: "/logo2/BharatFast.webp" },
+    { name: "Digital Pulse",   logo: "/logo2/CXODigitalPulse.png" },
+    { name: "CXO Today",       logo: "/logo2/CXOToday.png" },
+    { name: "HR Katha",        logo: "/logo2/HRKatha.png" },
+    { name: "HR Today",        logo: "/logo2/HRToday.svg" },
+    { name: "ISN",             logo: "/logo2/ISN.webp" },
+    { name: "IT Voice",        logo: "/logo2/ITVoice.png" },
+    { name: "MediaBrief",      logo: "/logo2/MediaBrief.jpg" },
+    { name: "PeopleMatters",   logo: "/logo2/PeopleMatters.webp" },
+    { name: "TechCircle",      logo: "/logo2/TechCircle.jpg" },
+    { name: "Techno Secrets",  logo: "/logo2/TechnoSecrets.png" },
+    { name: "Media Infoline",  logo: "/logo2/MediaInfoline.png" },
   ]
 
+  // ---------------- SIZING / STRIDE ----------------
+  const H_MARGIN = 32                       // mx-8 on each tile
+  const COMPANY_TILE_WIDTH = 176            // w-44
+  const MEDIA_TILE_WIDTH   = 160            // w-40
+
+  const COMPANY_STRIDE = COMPANY_TILE_WIDTH + H_MARGIN * 2 // 176 + 64 = 240
+  const MEDIA_STRIDE   = MEDIA_TILE_WIDTH   + H_MARGIN * 2 // 160 + 64 = 224
+
+  // First row (perfect) – compact frame, no background
+  const CompanyLogoFrame = ({ children }: { children: React.ReactNode }) => (
+    <div className="w-44 h-16 md:h-20 flex items-center justify-center overflow-hidden">
+      {children}
+    </div>
+  )
+
+  // Second row (intentionally zoomed) – same width but taller tile, image fills it
+  const MediaLogoFrame = ({ children }: { children: React.ReactNode }) => (
+    <div className="w-40 h-12 flex items-center justify-center overflow-hidden">
+      {children}
+    </div>
+  )
+
   return (
-   <section
-  ref={sectionRef}
-  className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 md:pt-40 lg:pt-48"
->
-      {/* Background Effects */}
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 md:pt-40 lg:pt-48"
+    >
+      {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background/90" />
         <motion.div
@@ -78,7 +98,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </div>
         </motion.div>
 
-        {/* Main Heading */}
+        {/* Heading */}
         <motion.div
           className="mb-4 md:mb-6"
           initial={{ opacity: 0, y: 30 }}
@@ -109,11 +129,11 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           The world's most advanced multi-agent hiring intelligence built by
-          global recruiters, for recruiters - redefining hiring.
+          global recruiters, for recruiters — redefining hiring.
         </motion.p>
       </div>
 
-      {/* Trusted Companies Section */}
+      {/* ---------- Trusted Companies (color / perfect sizing) ---------- */}
       <motion.div
         className="mb-12 md:mb-16"
         initial={{ opacity: 0, y: 30 }}
@@ -130,35 +150,35 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </button>
         </div>
 
-        {/* logos untouched */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden relative z-10">
           <motion.div
             className="flex will-change-transform"
-            animate={{ x: [-0, -trustedCompanies.length * 200] }}
+            animate={{ x: [0, -(trustedCompanies.length * COMPANY_STRIDE)] }}
             transition={{ repeat: Infinity, duration: 120, ease: "linear" }}
           >
-            {trustedCompanies.concat(trustedCompanies).map((company, index) => (
+            {trustedCompanies.concat(trustedCompanies).map((company, i) => (
               <motion.button
-                key={`${company.name}-${index}`}
+                key={`${company.name}-${i}`}
                 onClick={() => onNavigate("testimonials")}
-                className="flex items-center mx-8 flex-shrink-0 cursor-pointer"
-                whileHover={{ scale: 1.05 }}
+                className="group mx-8 flex flex-shrink-0 items-center cursor-pointer"
+                whileHover={{ scale: 1.04 }}
               >
-                <div className="w-40 h-20 rounded-lg bg-muted/30 flex items-center justify-center overflow-hidden">
+                <CompanyLogoFrame>
                   <img
-                    src={company.logo || "/placeholder.svg"}
+                    src={company.logo}
                     alt={`${company.name} logo`}
-                    className="w-full h-full transition-all duration-500"
-                    style={{ filter: "grayscale(100%)" }}
+                    loading="lazy"
+                    decoding="async"
+                    className="block max-h-full max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                   />
-                </div>
+                </CompanyLogoFrame>
               </motion.button>
             ))}
           </motion.div>
         </div>
       </motion.div>
 
-      {/* News & Media Section */}
+      {/* ---------- News & Media (grayscale / zoomed-in) ---------- */}
       <motion.div
         className="mb-12 md:mb-16"
         initial={{ opacity: 0, y: 30 }}
@@ -174,28 +194,32 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* logos untouched */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden relative z-10">
           <motion.div
             className="flex will-change-transform"
-            animate={{ x: [-0, -mediaPartners.length * 220] }}
+            animate={{ x: [0, -(mediaPartners.length * MEDIA_STRIDE)] }}
             transition={{ repeat: Infinity, duration: 140, ease: "linear" }}
           >
-            {mediaPartners.concat(mediaPartners).map((media, index) => (
+            {mediaPartners.concat(mediaPartners).map((media, i) => (
               <motion.button
-                key={`${media.name}-${index}`}
+                key={`${media.name}-${i}`}
                 onClick={() => onNavigate("press")}
-                className="flex items-center mx-8 flex-shrink-0 cursor-pointer"
-                whileHover={{ scale: 1.05 }}
+                className="group mx-8 flex flex-shrink-0 items-center cursor-pointer"
+                whileHover={{ scale: 1.04 }}
               >
-                <div className="w-40 h-20 rounded-lg bg-muted/30 flex items-center justify-center overflow-hidden">
+                <MediaLogoFrame>
                   <img
-                    src={media.logo || "/placeholder.svg"}
+                    src={media.logo}
                     alt={`${media.name} logo`}
-                    className="w-full h-full transition-all duration-500"
-                    style={{ filter: "grayscale(100%)" }}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-contain transition-all duration-300"
+                    style={{
+                      filter: "grayscale(1) saturate(0) contrast(.9)",
+                      WebkitFilter: "grayscale(1) saturate(0) contrast(.9)", // Safari fallback
+                    }}
                   />
-                </div>
+                </MediaLogoFrame>
               </motion.button>
             ))}
           </motion.div>
