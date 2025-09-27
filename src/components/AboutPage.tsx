@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Brain, Heart, Target, ArrowRight, Sparkles, Rocket } from "lucide-react";
 
 export function AboutPage() {
-  const values = [
+  const philosophyValues = [
     {
       icon: Brain,
       title: "Context over Keywords",
@@ -56,6 +56,7 @@ export function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
+          {/* Pill heading */}
           <motion.div
             style={{
               display: "inline-flex",
@@ -77,6 +78,7 @@ export function AboutPage() {
             About Us
           </motion.div>
 
+          {/* Hero Title */}
           <h1
             style={{
               fontSize: "3rem",
@@ -108,6 +110,7 @@ export function AboutPage() {
             </span>
           </h1>
 
+          {/* Hero Subtitle */}
           <motion.p
             style={{
               fontSize: "1.25rem",
@@ -120,10 +123,11 @@ export function AboutPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            At OrcHire.ai, we believe hiring should be more than filling a vacancy — it should be about
-            building futures, shaping organizations, and unlocking human potential.
+            At OrcHire.ai, we believe hiring should be more than filling a vacancy — it should be
+            about building futures, shaping organizations, and unlocking human potential.
           </motion.p>
 
+          {/* Hero Button */}
           <motion.button
             style={{
               display: "inline-flex",
@@ -162,6 +166,7 @@ export function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
+            {/* Pill heading */}
             <motion.div
               style={{
                 display: "inline-flex",
@@ -182,6 +187,8 @@ export function AboutPage() {
               <Sparkles style={{ width: "1rem", height: "1rem" }} />
               Our Philosophy
             </motion.div>
+
+            {/* Title */}
             <h2
               style={{
                 fontSize: "2.5rem",
@@ -203,8 +210,9 @@ export function AboutPage() {
                 margin: "0 auto",
               }}
             >
-              The world of hiring has long been trapped in outdated systems — resumes, forms, and keyword filters.
-              These processes reduce people to static documents and make hiring reactive. We exist to change that.
+              The world of hiring has long been trapped in outdated systems — resumes, forms, and
+              keyword filters. These processes reduce people to static documents and make hiring
+              reactive. We exist to change that.
             </p>
           </motion.div>
 
@@ -216,7 +224,7 @@ export function AboutPage() {
               gap: "2rem",
             }}
           >
-            {values.map((value, index) => {
+            {philosophyValues.map((value, index) => {
               const Icon = value.icon;
               return (
                 <motion.div
@@ -273,18 +281,44 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* ============== VISION ============== */}
-      <section style={{ padding: "5rem 1.5rem", textAlign: "center" }}>
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+      {/* ============== JOURNEY (Vision / Approach / Mission) ============== */}
+      <section style={{ padding: "5rem 1.5rem" }}>
+        <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
           <motion.div
+            style={{
+              textAlign: "center",
+              marginBottom: "3rem",
+            }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
+            {/* Pill heading */}
+            <motion.div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.75rem 1.5rem",
+                marginBottom: "2rem",
+                background: "rgba(12, 142, 255, 0.1)",
+                border: "1px solid rgba(12, 142, 255, 0.2)",
+                borderRadius: "9999px",
+                color: "#0C8EFF",
+                fontWeight: "600",
+              }}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+            >
+              <Rocket style={{ width: "1rem", height: "1rem" }} />
+              Our Journey So Far
+            </motion.div>
+
             <h2
               style={{
-                fontSize: "3rem",
+                fontSize: "2.5rem",
                 fontWeight: "bold",
                 marginBottom: "1.5rem",
                 background: "linear-gradient(to right, #0C8EFF, #9F62ED, #0C8EFF)",
@@ -292,73 +326,77 @@ export function AboutPage() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Our Vision
+              Vision • Approach • Mission
             </h2>
-            <p style={{ fontSize: "1.5rem", maxWidth: "48rem", margin: "0 auto" }}>
-              OrcHire.ai was founded with one clear mission: to end the ATS and resume era and pioneer the
-              future of hiring. From day one, we've built with recruiters, for recruiters, refining our product
-              daily with real-world mandates and live hiring data.
-            </p>
           </motion.div>
-        </div>
-      </section>
 
-      {/* ============== APPROACH ============== */}
-      <section style={{ padding: "5rem 1.5rem", textAlign: "center" }}>
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
+          {/* Boxes grid */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "2rem",
+            }}
           >
-            <h2
+            {/* Vision */}
+            <div
               style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                marginBottom: "1.5rem",
-                background: "linear-gradient(to right, #9F62ED, #0C8EFF, #9F62ED)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                padding: "2.5rem",
+                borderRadius: "1.5rem",
+                background: "#0C8EFF15",
+                border: "2px solid #0C8EFF",
+                textAlign: "center",
               }}
             >
-              Our Approach
-            </h2>
-            <p style={{ fontSize: "1.5rem", maxWidth: "48rem", margin: "0 auto" }}>
-              We see hiring as both Reactive, Proactive, and Autonomous. OrcHire.ai unites AI-powered sourcing,
-              engagement, interviewing, and decision-making into one seamless hiring OS. The result? A system
-              that not only keeps up with today's demands but also anticipates tomorrow's.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+              <h3 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1rem" }}>
+                Our Vision
+              </h3>
+              <p style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
+                OrcHire.ai was founded to end the ATS and resume era and pioneer the future of
+                hiring. From day one, we've built with recruiters, for recruiters, refining our
+                product daily with real-world mandates and live hiring data.
+              </p>
+            </div>
 
-      {/* ============== MISSION ============== */}
-      <section style={{ padding: "5rem 1.5rem", textAlign: "center" }}>
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-          >
-            <h2
+            {/* Approach */}
+            <div
               style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                marginBottom: "1.5rem",
-                background: "linear-gradient(to right, #0C8EFF, #9F62ED, #0C8EFF)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                padding: "2.5rem",
+                borderRadius: "1.5rem",
+                background: "#9F62ED15",
+                border: "2px solid #9F62ED",
+                textAlign: "center",
               }}
             >
-              Our Mission
-            </h2>
-            <p style={{ fontSize: "1.5rem", maxWidth: "48rem", margin: "0 auto" }}>
-              We're just getting started. Our mission is to make every hire smarter, faster, and more human —
-              and in doing so, set the global standard for the future of work.
-            </p>
-          </motion.div>
+              <h3 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1rem" }}>
+                Our Approach
+              </h3>
+              <p style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
+                We see hiring as both Reactive, Proactive, and Autonomous. OrcHire.ai unites
+                AI-powered sourcing, engagement, interviewing, and decision-making into one seamless
+                hiring OS.
+              </p>
+            </div>
+
+            {/* Mission */}
+            <div
+              style={{
+                padding: "2.5rem",
+                borderRadius: "1.5rem",
+                background: "#10B98115",
+                border: "2px solid #10B981",
+                textAlign: "center",
+              }}
+            >
+              <h3 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1rem" }}>
+                Our Mission
+              </h3>
+              <p style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
+                We're just getting started. Our mission is to make every hire smarter, faster, and
+                more human — and in doing so, set the global standard for the future of work.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
