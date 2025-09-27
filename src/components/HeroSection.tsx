@@ -215,8 +215,8 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                     decoding="async"
                     className="w-full h-full object-contain transition-all duration-300"
                     style={{
-                      filter: "grayscale(1) saturate(0) contrast(.9)",
-                      WebkitFilter: "grayscale(1) saturate(0) contrast(.9)", // Safari fallback
+                      filter: "grayscale(1) brightness(1) contrast(0.2)",
+                      WebkitFilter: "grayscale(1) brightness(1) contrast(0.2)", // Safari fallback
                     }}
                   />
                 </MediaLogoFrame>

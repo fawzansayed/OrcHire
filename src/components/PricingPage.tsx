@@ -193,7 +193,6 @@ export function PricingPage() {
 
   const formatPrice = (price: number, currencyType: Currency) => {
     if (price === 0) return "Custom"
-
     if (currencyType === "USD") {
       return new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -222,7 +221,6 @@ export function PricingPage() {
           : tier.monthlyPriceINR
 
     const originalPrice = currency === "USD" ? tier.originalPriceUSD : tier.originalPriceINR
-
     return { basePrice, originalPrice }
   }
 
@@ -231,7 +229,7 @@ export function PricingPage() {
     return Math.round(((monthly - annual) / monthly) * 100)
   }
 
-  const getCardStyles = (tier: PricingTier, index: number) => {
+  const getCardStyles = (tier: PricingTier, _index: number) => {
     if (tier.popular) {
       return {
         background: "linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(34, 197, 94, 0.15) 100%)",
@@ -249,7 +247,6 @@ export function PricingPage() {
     } else {
       return {
         background: "rgba(255, 255, 255, 0.03)",
-        
         highlight: "bg-gray-500/20 text-gray-400 border-gray-500/30",
         button: "bg-white/10 text-foreground border border-border hover:bg-white/20",
       }
@@ -257,19 +254,30 @@ export function PricingPage() {
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 relative min-h-screen overflow-hidden">
+    <section className="relative isolate min-h-screen overflow-hidden bg-background py-20 px-4 sm:px-6 lg:px-8">
       {/* Fluid Organic Background */}
-      <div className="absolute inset-0 -z-10">
-        {/* Base background */}
-        <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Base background (inline styles so purge can't strip it) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundColor: "hsl(var(--background))",
+            backgroundImage:
+              "radial-gradient(900px 600px at -120px -120px, rgba(12,142,255,.18), transparent 55%)," +
+              "radial-gradient(800px 700px at 110% 120%, rgba(159,98,237,.16), transparent 55%)," +
+              "radial-gradient(600px 500px at 50% 10%, rgba(34,197,94,.12), transparent 60%)",
+          }}
+        />
 
         {/* Organic flowing shapes */}
         <motion.div
-          className="absolute top-0 left-0 w-[60%] h-[80%] opacity-60"
+          className="absolute top-0 left-0 w-[60%] h-[80%]"
           style={{
-            background: "linear-gradient(135deg, rgba(255, 154, 115, 0.3) 0%, rgba(255, 206, 154, 0.2) 100%)",
+            opacity: 0.7,
+            background:
+              "linear-gradient(135deg, rgba(255,154,115,0.5) 0%, rgba(255,206,154,0.32) 100%)",
             borderRadius: "0% 100% 80% 20% / 0% 50% 50% 100%",
-            filter: "blur(60px)",
+            filter: "blur(70px)",
           }}
           animate={{
             borderRadius: [
@@ -282,11 +290,13 @@ export function PricingPage() {
         />
 
         <motion.div
-          className="absolute bottom-0 right-0 w-[70%] h-[70%] opacity-50"
+          className="absolute bottom-0 right-0 w-[70%] h-[70%]"
           style={{
-            background: "linear-gradient(225deg, rgba(159, 98, 237, 0.25) 0%, rgba(168, 85, 247, 0.15) 100%)",
+            opacity: 0.62,
+            background:
+              "linear-gradient(225deg, rgba(159,98,237,0.42) 0%, rgba(168,85,247,0.25) 100%)",
             borderRadius: "80% 20% 0% 100% / 50% 100% 0% 50%",
-            filter: "blur(80px)",
+            filter: "blur(90px)",
           }}
           animate={{
             borderRadius: [
@@ -299,11 +309,13 @@ export function PricingPage() {
         />
 
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[50%] h-[60%] opacity-40"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[60%]"
           style={{
-            background: "linear-gradient(45deg, rgba(6, 182, 212, 0.2) 0%, rgba(34, 197, 94, 0.15) 100%)",
+            opacity: 0.56,
+            background:
+              "linear-gradient(45deg, rgba(6,182,212,0.36) 0%, rgba(34,197,94,0.24) 100%)",
             borderRadius: "50% 50% 50% 50% / 60% 40% 60% 40%",
-            filter: "blur(100px)",
+            filter: "blur(110px)",
           }}
           animate={{
             borderRadius: [
@@ -342,26 +354,23 @@ export function PricingPage() {
             Flexible plans powered by AI agents to fit your recruiting needs.
           </motion.p>
 
-          {/* Premium Control Panel */}
+          {/* Control Panel */}
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {/* Premium Currency Switch */}
+            {/* Currency Switch */}
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground font-medium">Currency</span>
               <div className="relative">
                 <div className="w-16 h-8 bg-gradient-to-r from-muted/60 via-muted/40 to-muted/60 backdrop-blur-xl rounded-full border border-border/40 shadow-inner flex-shrink-0 relative">
-                  {/* thumb */}
                   <motion.div
                     className="absolute top-0.5 w-7 h-7 rounded-full shadow-lg border bg-foreground text-background border-border/40"
                     animate={{ x: currency === "USD" ? 1.4 : 29 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
-
-                  {/* overlay with equal halves (FIX) */}
                   <div className="absolute inset-0 grid grid-cols-2 place-items-center">
                     <motion.button
                       onClick={() => setCurrency("USD")}
@@ -374,7 +383,6 @@ export function PricingPage() {
                         }`}
                       />
                     </motion.button>
-
                     <motion.button
                       onClick={() => setCurrency("INR")}
                       className="w-full h-full inline-flex items-center justify-center z-10"
@@ -392,16 +400,14 @@ export function PricingPage() {
               <div className="text-sm font-medium text-foreground flex-grow">{currency}</div>
             </div>
 
-            {/* Premium Billing Switch */}
+            {/* Billing Switch */}
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground font-medium">Billing</span>
               <div className="relative">
                 <div className="w-24 h-8 bg-gradient-to-r from-muted/60 via-muted/40 to-muted/60 backdrop-blur-xl rounded-full border border-border/40 shadow-inner flex-shrink-0">
                   <motion.div
                     className="absolute top-0.5 w-11 h-7 rounded-full shadow-lg border bg-foreground text-background border-border/40"
-                    animate={{
-                      x: billingPeriod === "monthly" ? 1.5 : 43,
-                    }}
+                    animate={{ x: billingPeriod === "monthly" ? 1.5 : 43 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
                   <div className="absolute inset-0 grid grid-cols-2 place-items-center">
@@ -414,7 +420,7 @@ export function PricingPage() {
                         className={`absolute inset-0 flex items-center justify-center leading-none text-xs font-medium transition-colors duration-200 ${
                           billingPeriod === "monthly" ? "text-background" : "text-muted-foreground/60"
                         }`}
-                        style={{ transform: "translateY(1px)" }}   // <-- nudge down
+                        style={{ transform: "translateY(1px)" }}
                       >
                         M
                       </span>
@@ -428,7 +434,7 @@ export function PricingPage() {
                         className={`absolute inset-0 flex items-center justify-center leading-none text-xs font-medium transition-colors duration-200 ${
                           billingPeriod === "annually" ? "text-background" : "text-muted-foreground/60"
                         }`}
-                        style={{ transform: "translateY(1px)" }}   // <-- nudge down
+                        style={{ transform: "translateY(1px)" }}
                       >
                         A
                       </span>
@@ -451,11 +457,11 @@ export function PricingPage() {
           </motion.div>
         </motion.div>
 
-        {/* Main Pricing Cards - All 5 Plans in Single Row */}
+        {/* Main Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-16 max-w-7xl mx-auto relative">
           {pricingTiers[2].popular && (
             <motion.div
-              className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20"
+              className="absolute -top-4 left-1/2 -translate-x-1/2 z-20"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.2 + 2 * 0.1 }}
@@ -488,22 +494,18 @@ export function PricingPage() {
                 transition={{ duration: 0.6, delay: 0.1 * index }}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
               >
-                {/* Card */}
                 <div
-                  className={`
-          relative h-full p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 group-hover:shadow-2xl overflow-hidden ${isPlainTier ? "border border-black/10 dark:border-white/10" : ""}
-        `}
+                  className={`relative h-full p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 group-hover:shadow-2xl overflow-hidden ${
+                    isPlainTier ? "border border-black/10 dark:border-white/10" : ""
+                  }`}
                   style={{
                     background: styles.background,
                     border: !isPlainTier ? (styles as any).border : undefined,
                   }}
                 >
-                  {/* Glass Effect Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent pointer-events-none rounded-2xl" />
 
-                  {/* Content */}
                   <div className="relative z-10">
-                    {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div
                         className={`w-12 h-12 rounded-xl flex items-center justify-center backdrop-blur-sm border ${
@@ -533,7 +535,6 @@ export function PricingPage() {
                       )}
                     </div>
 
-                    {/* Plan Info */}
                     <div className="mb-6">
                       <h3 className="text-xl font-semibold text-foreground mb-1">{tier.name}</h3>
                       <p className="text-muted-foreground text-xs uppercase tracking-wide font-medium">
@@ -541,7 +542,6 @@ export function PricingPage() {
                       </p>
                     </div>
 
-                    {/* Pricing */}
                     <div className="mb-6">
                       <AnimatePresence mode="wait">
                         <motion.div
@@ -584,7 +584,6 @@ export function PricingPage() {
                       </AnimatePresence>
                     </div>
 
-                    {/* CTA Button */}
                     <div className="mb-6">
                       <Button
                         className={`w-full h-10 rounded-xl font-medium transition-all duration-300 text-sm ${
@@ -599,7 +598,6 @@ export function PricingPage() {
                       </Button>
                     </div>
 
-                    {/* Features List - Compact */}
                     <div className="space-y-2">
                       {tier.features.slice(0, 6).map((feature, featureIndex) => (
                         <motion.div
@@ -665,26 +663,21 @@ export function PricingPage() {
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
               >
                 <div className="relative p-6 rounded-2xl bg-card/40 backdrop-blur-xl border border-border/30 transition-all duration-300 group-hover:shadow-xl overflow-hidden">
-                  {/* Glass Effect Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent pointer-events-none rounded-2xl" />
 
-                  {/* Content */}
                   <div className="relative z-10">
-                    {/* Icon */}
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-muted/50 to-muted/30 backdrop-blur-sm border border-border/30 flex items-center justify-center mb-4">
                       <Icon className="w-6 h-6 text-muted-foreground" />
                     </div>
 
-                    {/* Header */}
                     <div className="mb-4">
                       <h3 className="text-lg font-semibold text-foreground mb-2">{card.title}</h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
                     </div>
 
-                    {/* CTA Button */}
                     <Button
                       variant="outline"
-                      className="w-full rounded-xl border-border/50 hover:border-foreground/30 bg-transparent hover:bg-muted/50"
+                      className="w-full rounded-XL border-border/50 hover:border-foreground/30 bg-transparent hover:bg-muted/50"
                     >
                       {card.cta}
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -707,7 +700,6 @@ export function PricingPage() {
             * All Multi-User plans include unlimited users and unlimited job postings. All Credits are renewed monthly.
           </p>
 
-          {/* Contact CTA */}
           <div className="bg-muted/30 backdrop-blur-xl rounded-2xl border border-border/50 p-8 inline-block">
             <h3 className="text-xl font-semibold text-foreground mb-2">Need help choosing?</h3>
             <p className="text-muted-foreground mb-6 max-w-md">
