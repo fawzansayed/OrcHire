@@ -65,7 +65,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 md:pt-40 lg:pt-48"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16 md:pt-20 lg:pt-24"
     >
       {/* Background */}
       <div className="absolute inset-0">
@@ -82,7 +82,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center mb-8 md:mb-12 lg:mb-16">
         {/* Live Badge */}
         <motion.div
           className="mb-6 md:mb-8"
@@ -135,7 +135,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
 
       {/* ---------- Trusted Companies (color / perfect sizing) ---------- */}
       <motion.div
-        className="mb-12 md:mb-16"
+        className="mb-20 md:mb-28 lg:mb-32"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.6 }}
@@ -150,7 +150,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </button>
         </div>
 
-        <div className="overflow-hidden relative z-10">
+        <div className="max-w-7xl mx-auto overflow-hidden relative z-10 px-8">
           <motion.div
             className="flex will-change-transform"
             animate={{ x: [0, -(trustedCompanies.length * COMPANY_STRIDE)] }}
@@ -194,7 +194,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           </div>
         </div>
 
-        <div className="overflow-hidden relative z-10">
+        <div className="max-w-7xl mx-auto overflow-hidden relative z-10 px-8">
           <motion.div
             className="flex will-change-transform"
             animate={{ x: [0, -(mediaPartners.length * MEDIA_STRIDE)] }}
