@@ -42,6 +42,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Color palette for ROI Calculator */
+  --blue-500: #3b82f6;
+  --purple-500: #8b5cf6;
+  --orange-500: #f97316;
+  --green-500: #22c55e;
+  --red-500: #ef4444;
+  --green-600: #16a34a;
 }
 
 .dark {
@@ -82,6 +90,14 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  
+  /* Color palette for ROI Calculator - Dark mode */
+  --blue-500: #3b82f6;
+  --purple-500: #8b5cf6;
+  --orange-500: #f97316;
+  --green-500: #22c55e;
+  --red-500: #ef4444;
+  --green-600: #16a34a;
 }
 
 @theme inline {
@@ -123,6 +139,28 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* ROI Calculator colors */
+  --color-blue-500: var(--blue-500);
+  --color-purple-500: var(--purple-500);
+  --color-orange-500: var(--orange-500);
+  --color-green-500: var(--green-500);
+  --color-red-500: var(--red-500);
+  --color-green-600: var(--green-600);
+  
+  /* ROI Calculator background colors with opacity */
+  --roi-blue-bg: rgb(59 130 246 / 0.3);
+  --roi-purple-bg: rgb(139 92 246 / 0.3);
+  --roi-orange-bg: rgb(249 115 22 / 0.3);
+  --roi-green-bg: rgb(34 197 94 / 0.3);
+  --roi-red-bg: rgb(239 68 68 / 0.3);
+  
+  /* ROI Calculator border colors with opacity */
+  --roi-blue-border: rgb(59 130 246 / 0.5);
+  --roi-purple-border: rgb(139 92 246 / 0.5);
+  --roi-orange-border: rgb(249 115 22 / 0.5);
+  --roi-green-border: rgb(34 197 94 / 0.5);
+  --roi-red-border: rgb(239 68 68 / 0.5);
 }
 
 @layer base {
@@ -300,3 +338,30 @@ section {
   box-shadow: 0 0 0 1px rgba(0,0,0,0.08); /* subtle outline for light bg */
 }
 
+/* ROI Calculator custom background classes */
+@layer utilities {
+  .roi-blue-bg {
+    background-color: var(--roi-blue-bg);
+    border-color: var(--roi-blue-border);
+  }
+  
+  .roi-purple-bg {
+    background-color: var(--roi-purple-bg);
+    border-color: var(--roi-purple-border);
+  }
+  
+  .roi-orange-bg {
+    background-color: var(--roi-orange-bg);
+    border-color: var(--roi-orange-border);
+  }
+  
+  .roi-green-bg {
+    background-color: var(--roi-green-bg);
+    border-color: var(--roi-green-border);
+  }
+  
+  .roi-red-bg {
+    background-color: var(--roi-red-bg);
+    border-color: var(--roi-red-border);
+  }
+}

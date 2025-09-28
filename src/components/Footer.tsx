@@ -1,5 +1,5 @@
 "use client"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { Linkedin, Twitter, Github } from "lucide-react"
 
 interface FooterProps {
@@ -20,7 +20,6 @@ export function Footer({ onNavigate }: FooterProps) {
       title: "Resources",
       links: [
         { name: "Knowledge Base", page: "resources" },
-    
         { name: "Press", page: "press" },
       ],
     },
@@ -28,12 +27,10 @@ export function Footer({ onNavigate }: FooterProps) {
       title: "Company",
       links: [
         { name: "About", page: "about" },
-
         { name: "Careers", page: "careers" },
-    
+        { name: "Contact Us", page: "contact" },
       ],
     },
-  
     {
       title: "Legal",
       links: [
@@ -51,10 +48,10 @@ export function Footer({ onNavigate }: FooterProps) {
       <div className="border-t border-border"></div>
 
       <div className="max-w-7xl mx-auto px-6">
-        {/* Enhanced Gradient Typography Section with Animated Glow */}
+        {/* Enhanced Gradient Typography Section with Animated Glow - Fixed clipping */}
         <div className="py-20 text-center">
           <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] dark:from-[#0C8EFF] dark:via-[#9F62ED] dark:to-[#0C8EFF] bg-clip-text text-transparent leading-tight max-w-6xl mx-auto relative"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] dark:from-[#0C8EFF] dark:via-[#9F62ED] dark:to-[#0C8EFF] bg-clip-text text-transparent leading-relaxed pb-[0.2em] inline-block overflow-visible max-w-6xl mx-auto relative"
             animate={{
               filter: [
                 "drop-shadow(0 0 20px rgba(12, 142, 255, 0.3))",
@@ -64,8 +61,9 @@ export function Footer({ onNavigate }: FooterProps) {
             }}
             transition={{
               duration: 4,
-              repeat: Number.POSITIVE_INFINITY,
+              repeat: Infinity,
               ease: "easeInOut",
+              repeatType: "loop",
             }}
           >
             Future Of Hiring, Now.

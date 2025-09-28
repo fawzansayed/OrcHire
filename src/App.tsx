@@ -29,6 +29,8 @@ const PressPage = lazy(() => import("./components/PressPage").then((m) => ({ def
 const SupportPage = lazy(() => import("./components/SupportPage").then((m) => ({ default: m.SupportPage })))
 
 const CareersPage = lazy(() => import("./components/CareersPage").then((m) => ({ default: m.CareersPage })))
+const ContactForm = lazy(() => import("./components/ContactForm").then((m) => ({ default: m.ContactForm })))
+
 
 const TermsPage = lazy(() => import("./components/TermsPage").then((m) => ({ default: m.TermsPage })))
 const PrivacyPage = lazy(() => import("./components/PrivacyPage").then((m) => ({ default: m.PrivacyPage })))
@@ -191,6 +193,16 @@ export default function App() {
           <main className="relative pt-20">
             <Suspense fallback={<LoadingSpinner />}>
               <CareersPage />
+              <Footer onNavigate={setCurrentPage} />
+            </Suspense>
+          </main>
+        )
+
+      case "contact":
+        return (
+          <main className="relative pt-20">
+            <Suspense fallback={<LoadingSpinner />}>
+              <ContactForm />
               <Footer onNavigate={setCurrentPage} />
             </Suspense>
           </main>
