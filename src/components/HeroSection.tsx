@@ -41,22 +41,21 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   ]
 
   // ---------------- SIZING / STRIDE ----------------
-  const H_MARGIN = 32                       // mx-8 on each tile
-  const COMPANY_TILE_WIDTH = 176            // w-44
-  const MEDIA_TILE_WIDTH   = 160            // w-40
+  // We’ll use ONE tile size for both rows.
+  const H_MARGIN = 32 // mx-8 on each tile
+  const TILE_WIDTH = 208 // Tailwind w-52 (same for both rows)
+  const TILE_HEIGHT = 96 // Tailwind h-24
 
-  const COMPANY_STRIDE = COMPANY_TILE_WIDTH + H_MARGIN * 2 // 176 + 64 = 240
-  const MEDIA_STRIDE   = MEDIA_TILE_WIDTH   + H_MARGIN * 2 // 160 + 64 = 224
+  const STRIDE = TILE_WIDTH + H_MARGIN * 2 // 208 + 64 = 272
 
-  // Frames
-  const CompanyLogoFrame = ({ children }: { children: React.ReactNode }) => (
-    <div className="w-44 h-16 md:h-20 flex items-center justify-center overflow-hidden">
-      {children}
-    </div>
-  )
-
-  const MediaLogoFrame = ({ children }: { children: React.ReactNode }) => (
-    <div className="w-40 h-12 flex items-center justify-center overflow-hidden">
+  // Uniform frame (same for both rows)
+  const LogoFrame = ({ children }: { children: React.ReactNode }) => (
+    <div
+      className="w-52 h-24 flex items-center justify-center overflow-hidden
+                 border border-border/70 rounded-xl bg-background/70 backdrop-blur-sm
+                 mx-8 p-4"
+      style={{ minWidth: TILE_WIDTH, minHeight: TILE_HEIGHT }}
+    >
       {children}
     </div>
   )
@@ -82,9 +81,9 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center mb-8 md:mb-12 lg:mb-16">
-        {/* Live Badge */}
+        {/* Live Badge (added top margin so it doesn't blend into header) */}
         <motion.div
-          className="mb-6 md:mb-8"
+          className="mb-6 md:mb-8 mt-12 md:mt-16 lg:mt-20"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -156,17 +155,17 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
 
           <motion.div
             className="flex will-change-transform"
-            animate={{ x: [0, -(trustedCompanies.length * COMPANY_STRIDE)] }}
+            animate={{ x: [0, -(trustedCompanies.length * STRIDE)] }}
             transition={{ repeat: Infinity, duration: 120, ease: "linear" }}
           >
             {trustedCompanies.concat(trustedCompanies).map((company, i) => (
               <motion.button
                 key={`${company.name}-${i}`}
                 onClick={() => onNavigate("testimonials")}
-                className="group mx-8 flex flex-shrink-0 items-center cursor-pointer"
+                className="group flex flex-shrink-0 items-center cursor-pointer"
                 whileHover={{ scale: 1.04 }}
               >
-                <CompanyLogoFrame>
+                <LogoFrame>
                   <img
                     src={company.logo}
                     alt={`${company.name} logo`}
@@ -174,7 +173,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                     decoding="async"
                     className="block max-h-full max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                   />
-                </CompanyLogoFrame>
+                </LogoFrame>
               </motion.button>
             ))}
           </motion.div>
@@ -204,17 +203,17 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
 
           <motion.div
             className="flex will-change-transform"
-            animate={{ x: [0, -(mediaPartners.length * MEDIA_STRIDE)] }}
+            animate={{ x: [0, -(mediaPartners.length * STRIDE)] }}
             transition={{ repeat: Infinity, duration: 140, ease: "linear" }}
           >
             {mediaPartners.concat(mediaPartners).map((media, i) => (
               <motion.button
                 key={`${media.name}-${i}`}
                 onClick={() => onNavigate("press")}
-                className="group mx-8 flex flex-shrink-0 items-center cursor-pointer"
+                className="group flex flex-shrink-0 items-center cursor-pointer"
                 whileHover={{ scale: 1.04 }}
               >
-                <MediaLogoFrame>
+                <LogoFrame>
                   <img
                     src={media.logo}
                     alt={`${media.name} logo`}
@@ -226,7 +225,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                       WebkitFilter: "grayscale(1) brightness(1) contrast(0.2)",
                     }}
                   />
-                </MediaLogoFrame>
+                </LogoFrame>
               </motion.button>
             ))}
           </motion.div>
