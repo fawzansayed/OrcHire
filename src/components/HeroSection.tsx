@@ -48,14 +48,13 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   const COMPANY_STRIDE = COMPANY_TILE_WIDTH + H_MARGIN * 2 // 176 + 64 = 240
   const MEDIA_STRIDE   = MEDIA_TILE_WIDTH   + H_MARGIN * 2 // 160 + 64 = 224
 
-  // First row (perfect) – compact frame, no background
+  // Frames
   const CompanyLogoFrame = ({ children }: { children: React.ReactNode }) => (
     <div className="w-44 h-16 md:h-20 flex items-center justify-center overflow-hidden">
       {children}
     </div>
   )
 
-  // Second row (intentionally zoomed) – same width but taller tile, image fills it
   const MediaLogoFrame = ({ children }: { children: React.ReactNode }) => (
     <div className="w-40 h-12 flex items-center justify-center overflow-hidden">
       {children}
@@ -151,6 +150,10 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         </div>
 
         <div className="max-w-7xl mx-auto overflow-hidden relative z-10 px-8">
+          {/* Fade overlays to hide edges */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-20" />
+
           <motion.div
             className="flex will-change-transform"
             animate={{ x: [0, -(trustedCompanies.length * COMPANY_STRIDE)] }}
@@ -195,6 +198,10 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         </div>
 
         <div className="max-w-7xl mx-auto overflow-hidden relative z-10 px-8">
+          {/* Fade overlays to hide edges */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-20" />
+
           <motion.div
             className="flex will-change-transform"
             animate={{ x: [0, -(mediaPartners.length * MEDIA_STRIDE)] }}
@@ -216,7 +223,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                     className="w-full h-full object-contain transition-all duration-300"
                     style={{
                       filter: "grayscale(1) brightness(1) contrast(0.2)",
-                      WebkitFilter: "grayscale(1) brightness(1) contrast(0.2)", // Safari fallback
+                      WebkitFilter: "grayscale(1) brightness(1) contrast(0.2)",
                     }}
                   />
                 </MediaLogoFrame>
