@@ -63,8 +63,6 @@ export function AgentFlowSection() {
     <section ref={sectionRef} className="py-20 px-6 relative overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/98 to-background/95" />
-
         <motion.div
           className="absolute top-1/4 left-1/5 w-96 h-96 bg-gradient-to-br from-[#0C8EFF]/8 via-[#9F62ED]/6 to-transparent rounded-full blur-3xl"
           animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.3, 1] }}
@@ -75,8 +73,6 @@ export function AgentFlowSection() {
           animate={{ x: [0, -35, 0], y: [0, 25, 0], scale: [1, 0.8, 1] }}
           transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 3 }}
         />
-
-        <div className="absolute inset-0 bg-background/40 backdrop-blur-[0.5px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -109,7 +105,7 @@ export function AgentFlowSection() {
           </motion.p>
         </motion.div>
 
-        {/* Core Capabilities */}
+        {/* Core Capabilities - Plain Cards with Hover Gradient */}
         <div className="grid lg:grid-cols-3 gap-8 mb-20">
           {platformOverview.coreCapabilities.map((cap, index) => {
             const Icon = cap.icon;
@@ -120,84 +116,78 @@ export function AgentFlowSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
               >
-                <div className="relative p-8 h-full transition-all duration-500 group overflow-hidden rounded-2xl">
-                  {/* Glass Background */}
-                  <div className="absolute inset-0 rounded-2xl bg-background/60 dark:bg-background/40 backdrop-blur-xl group-hover:bg-background/80 dark:group-hover:bg-background/60 transition-all duration-500" />
+                <div className="relative p-8 h-full transition-all duration-500 group overflow-hidden rounded-2xl border border-muted-foreground/20">
+                  {/* Plain Background - Shows site background */}
+                  <div className="absolute inset-0 rounded-2xl bg-transparent" />
 
-                  {/* Strong Border */}
-                  <div className="absolute inset-0 rounded-2xl border border-black dark:border-white/10 group-hover:border-[#0C8EFF]/40 shadow-lg group-hover:shadow-xl transition-all duration-500" />
-
-                  {/* Glass Reflections */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/15" />
-                  <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent dark:via-white/15" />
-
-                  {/* Corner Accent */}
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[#0C8EFF]/10 to-transparent dark:from-[#0C8EFF]/5 rounded-tr-2xl" />
-
-                  {/* Inner Glow */}
-                  <div className="absolute inset-1 rounded-2xl bg-gradient-to-br from-white/[0.05] via-transparent to-transparent dark:from-white/[0.03] opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Hover Gradient Effect - Top Right to Bottom Left with Cloudy Blue/Purple */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div 
+                      className="absolute inset-0 rounded-2xl"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(12, 142, 255, 0.15) 0%, rgba(159, 98, 237, 0.12) 35%, rgba(12, 142, 255, 0.08) 70%, transparent 100%)",
+                        filter: "blur(0.5px)"
+                      }}
+                    />
+                    <div 
+                      className="absolute inset-0 rounded-2xl"
+                      style={{
+                        background: "radial-gradient(ellipse at top right, rgba(12, 142, 255, 0.1) 0%, rgba(159, 98, 237, 0.06) 40%, transparent 80%)"
+                      }}
+                    />
+                  </div>
 
                   <div className="relative z-10">
+                    {/* Icon Container */}
                     <motion.div 
-                      className="w-16 h-16 md:w-20 md:h-20 bg-background/80 dark:bg-background/60 backdrop-blur-xl border border-black dark:border-white/20 rounded-2xl flex items-center justify-center shadow-lg mb-6 group-hover:bg-gradient-to-br group-hover:from-[#0C8EFF]/10 group-hover:to-[#9F62ED]/10 transition-all duration-300"
+                      className="w-16 h-16 md:w-20 md:h-20 bg-transparent border border-muted-foreground/20 rounded-2xl flex items-center justify-center mb-6 group-hover:border-[#0C8EFF]/40 transition-all duration-300"
                       whileHover={{ scale: 1.05, rotate: 3 }}
                       transition={{ duration: 0.3 }}
                     >
                       <Icon className="w-8 h-8 md:w-10 md:h-10 text-foreground/90 group-hover:text-[#0C8EFF] transition-colors duration-300" strokeWidth={1.5} />
                     </motion.div>
 
-                    <div className="inline-flex px-4 py-2 bg-background/80 dark:bg-background/60 backdrop-blur-sm rounded-full border border-black dark:border-white/20 shadow-sm group-hover:border-[#0C8EFF]/30 group-hover:bg-gradient-to-r group-hover:from-[#0C8EFF]/5 group-hover:to-[#9F62ED]/5 transition-all duration-300">
+                    {/* Metric Badge */}
+                    <div className="inline-flex px-4 py-2 bg-transparent border border-muted-foreground/20 rounded-full group-hover:border-[#0C8EFF]/30 transition-all duration-300 mb-4">
                       <span className="text-sm font-semibold bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED] bg-clip-text text-transparent">{cap.metric}</span>
                     </div>
 
-                    <h3 className="text-xl md:text-2xl font-semibold text-foreground leading-tight group-hover:text-[#0C8EFF] mt-4">{cap.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-base md:text-lg group-hover:text-muted-foreground/90">{cap.description}</p>
+                    {/* Title */}
+                    <h3 className="text-xl md:text-2xl font-semibold text-foreground leading-tight group-hover:text-[#0C8EFF] mb-3 transition-colors duration-300">{cap.title}</h3>
+                    
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed text-base md:text-lg transition-colors duration-300">{cap.description}</p>
                   </div>
-
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0C8EFF]/5 via-[#9F62ED]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  />
                 </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        {/* Key Metrics - KPI Format */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {platformOverview.keyMetrics.map((metric, index) => {
-            const Icon = metric.icon;
             return (
               <motion.div
                 key={index}
+                className="text-center group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
+                transition={{ duration: 0.4, delay: 1.6 + index * 0.1 }}
+                whileHover={{ y: -4 }}
               >
-                <div className="relative p-6 text-center transition-all duration-500 group overflow-hidden rounded-xl">
-                  <div className="absolute inset-0 rounded-xl bg-white/30 dark:bg-background/40 backdrop-blur-xl group-hover:bg-white/40 dark:group-hover:bg-background/60 transition-all duration-500" />
-                  <div className="absolute inset-0 rounded-xl border border-black dark:border-white/10 group-hover:border-[#0C8EFF]/40 shadow-lg group-hover:shadow-xl transition-all duration-500" />
+                {/* Large Value */}
+                <motion.div
+                  className="text-4xl md:text-5xl lg:text-6xl font-thin text-foreground mb-2 transition-all duration-300 group-hover:text-[#0C8EFF]"
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ duration: 0.5, delay: 1.7 + index * 0.1 }}
+                >
+                  {metric.value}{metric.suffix}
+                </motion.div>
 
-                  <div className="relative z-10">
-                    <motion.div
-                      className="w-12 h-12 bg-white/20 dark:bg-background/60 backdrop-blur-sm border border-black dark:border-white/20 rounded-xl flex items-center justify-center shadow-sm mb-4 mx-auto group-hover:bg-gradient-to-br group-hover:from-[#0C8EFF]/20 group-hover:to-[#9F62ED]/20 transition-all duration-300"
-                      whileHover={{ scale: 1.05, rotate: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Icon className="w-6 h-6 text-foreground/90 group-hover:text-[#0C8EFF] transition-colors duration-300" strokeWidth={1.5} />
-                    </motion.div>
-
-                    <div className="text-3xl md:text-4xl font-bold text-foreground mb-1">
-                      {metric.value}
-                      <span className="text-lg text-muted-foreground ml-1">{metric.suffix}</span>
-                    </div>
-                    <div className="text-sm text-muted-foreground font-medium">{metric.label}</div>
-                  </div>
-
-                  <motion.div
-                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#0C8EFF]/20 via-[#9F62ED]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  />
-                </div>
+                {/* Small Label */}
+                <div className="text-sm text-muted-foreground font-light group-hover:text-[#0C8EFF] transition-colors duration-300">{metric.label}</div>
               </motion.div>
             );
           })}

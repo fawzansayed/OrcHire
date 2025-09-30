@@ -4,6 +4,7 @@ import { lazy, Suspense, useState, useRef, memo } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { ThemeProvider } from "./components/ThemeProvider"
 import { Toaster } from "./components/ui/sonner"
+import { BackgroundBubbles } from "./components/BackgroundBubbles"
 
 
 const Navigation = lazy(() => import("./components/Navigation").then((m) => ({ default: m.Navigation })))
@@ -288,9 +289,9 @@ export default function App() {
   return (
     <ThemeProvider>
       <div ref={containerRef} className="min-h-screen relative overflow-hidden bg-background text-foreground">
-        <OptimizedBackground scrollYProgress={scrollYProgress} />
+        <BackgroundBubbles />
 
-        <div className="relative z-10 min-h-screen">
+        <div className="relative min-h-screen" style={{ zIndex: 20 }}>
           <Suspense fallback={<LoadingSpinner />}>
             <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
           </Suspense>

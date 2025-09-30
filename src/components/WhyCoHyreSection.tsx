@@ -1,7 +1,5 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
 import {
   Search,
   UserCheck,
@@ -15,12 +13,6 @@ interface WhyCoHyreSectionProps {
 }
 
 export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
-  const sectionRef = useRef(null)
-  const workflowRef = useRef(null)
-
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-  const workflowInView = useInView(workflowRef, { once: true, amount: 0.3 })
-
   const workflowSteps = [
     {
       icon: Search,
@@ -28,7 +20,6 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
       description:
         "AI scans 400M+ profiles globally, identifying top talent across platforms",
       flowMetric: "400M+ Profiles",
-      accentColor: "#0C8EFF",
     },
     {
       icon: UserCheck,
@@ -36,7 +27,6 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
       description:
         "Advanced evaluation through skills analysis and cultural fit prediction",
       flowMetric: "Multi-dimensional Analysis",
-      accentColor: "#9F62ED",
     },
     {
       icon: MessageSquare,
@@ -44,7 +34,6 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
       description:
         "Autonomous AI conducts structured interviews and ranks candidates",
       flowMetric: "24/7 AI Interviewers",
-      accentColor: "#E241B7",
     },
     {
       icon: Settings,
@@ -52,34 +41,26 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
       description:
         "Continuous learning improves precision and reduces time-to-fill",
       flowMetric: "Self-Improving AI",
-      accentColor: "#00C853",
     },
   ]
 
   return (
-    <section ref={sectionRef} className="relative py-20 px-6 overflow-hidden">
+    <section className="relative py-20 px-6 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background/90" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Workflow Section */}
-        <motion.div
-          ref={workflowRef}
-          className="mb-20"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
+        <div className="mb-20">
           <div className="text-center mb-16">
             <div className="inline-block p-[1px] bg-gradient-to-r from-[#9F62ED]/40 via-[#0C8EFF]/40 to-[#9F62ED]/40 rounded-full shadow-md">
-              <motion.div className="inline-flex items-center space-x-2 bg-background/70 backdrop-blur-xl px-4 py-2 rounded-full">
+              <div className="inline-flex items-center space-x-2 bg-background/70 backdrop-blur-xl px-4 py-2 rounded-full">
                 <Play className="w-4 h-4 text-[#9F62ED]" strokeWidth={1.25} />
                 <span className="text-sm font-medium text-foreground">
                   Autonomous Talent Pipeline
                 </span>
-              </motion.div>
+              </div>
             </div>
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               AI-Powered Hiring Flow
@@ -96,44 +77,45 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
               {workflowSteps.map((step, index) => {
                 const Icon = step.icon
                 return (
-                  <motion.div
+                  <div
                     key={step.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={workflowInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: index * 0.15 }}
-                    className="relative"
+                    className="relative group"
                   >
-                    <div
-                      className="relative p-8 min-h-[320px] h-full flex flex-col justify-between 
-                                 backdrop-blur-xl border rounded-3xl shadow-lg transition-all duration-500 overflow-hidden"
-                      style={{
-                        background: `${step.accentColor}08`, // very light tint
-                        boxShadow: `0 0 18px ${step.accentColor}33`, // soft glow
-                        borderColor: `${step.accentColor}25`,
-                      }}
-                    >
+                    <div className="relative p-8 min-h-[320px] h-full flex flex-col justify-between rounded-3xl border border-muted-foreground/20 transition-all duration-500 overflow-hidden hover:scale-105">
+                      {/* Plain Background - Shows site background */}
+                      <div className="absolute inset-0 rounded-3xl bg-transparent" />
+
+                      {/* Hover Gradient Effect - Fogged Glass */}
+                      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div 
+                          className="absolute inset-0 rounded-3xl"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(12, 142, 255, 0.08) 0%, rgba(159, 98, 237, 0.06) 35%, rgba(12, 142, 255, 0.04) 70%, transparent 100%)",
+                            filter: "blur(0.5px)"
+                          }}
+                        />
+                        <div 
+                          className="absolute inset-0 rounded-3xl"
+                          style={{
+                            background: "radial-gradient(ellipse at top right, rgba(12, 142, 255, 0.06) 0%, rgba(159, 98, 237, 0.03) 40%, transparent 80%)"
+                          }}
+                        />
+                      </div>
+
                       <div className="relative h-full flex flex-col justify-center items-center text-center z-10 pt-6">
                         {/* Icon */}
                         <div className="mb-6">
-                          <div
-                            className="w-16 h-16 backdrop-blur-xl border rounded-2xl flex items-center justify-center shadow-md"
-                            style={{
-                              borderColor: `${step.accentColor}30`,
-                              background: `${step.accentColor}12`,
-                              boxShadow: `0 0 10px ${step.accentColor}22`,
-                            }}
-                          >
+                          <div className="w-16 h-16 bg-transparent border border-muted-foreground/20 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-[#0C8EFF]/40">
                             <Icon
-                              className="w-8 h-8"
+                              className="w-8 h-8 text-foreground transition-colors duration-300 group-hover:text-[#0C8EFF]"
                               strokeWidth={1.5}
-                              style={{ color: step.accentColor }}
                             />
                           </div>
                         </div>
 
                         {/* Title & Description */}
                         <div className="mb-6 space-y-2">
-                          <h4 className="text-xl font-bold text-foreground">
+                          <h4 className="text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-[#0C8EFF]">
                             {step.title}
                           </h4>
                           <p className="text-muted-foreground text-sm leading-relaxed">
@@ -143,17 +125,8 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
 
                         {/* Metric */}
                         <div className="mt-auto">
-                          <div
-                            className="inline-flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full border shadow-sm"
-                            style={{
-                              borderColor: `${step.accentColor}30`,
-                              background: `${step.accentColor}10`,
-                            }}
-                          >
-                            <div
-                              className="w-2 h-2 rounded-full"
-                              style={{ backgroundColor: step.accentColor }}
-                            />
+                          <div className="inline-flex items-center gap-2 bg-transparent px-4 py-2 rounded-full border border-muted-foreground/20 transition-all duration-300 group-hover:scale-105 group-hover:border-[#0C8EFF]/30">
+                            <div className="w-2 h-2 rounded-full bg-[#0C8EFF]" />
                             <span className="text-sm font-medium text-foreground">
                               {step.flowMetric}
                             </span>
@@ -161,12 +134,12 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 )
               })}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
