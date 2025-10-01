@@ -1,19 +1,20 @@
 import { Link2 } from "lucide-react"
+import { ImageWithFallback } from './figma/ImageWithFallback'
 
 export function IntegrationsSection() {
-  // Structure for 10 integration logos (you'll add images to public/logos/)
+  // Integration platforms with working image URLs
   const integrations = [
-    { name: "Integration 1", logo: "/logos/logo1.png" },
-    { name: "Integration 2", logo: "/logos/logo2.png" },
-    { name: "Integration 3", logo: "/logos/logo3.png" },
-    { name: "Integration 4", logo: "/logos/logo4.png" },
+    { name: "Integration 1", logo: "/logo3/Gmail.png" },
+    { name: "Integration 2", logo: "/logo3/Google-Calendar.png" },
+    { name: "Integration 3", logo: "/logo3/Outlook.png" },
+    { name: "Integration 4", logo: "/logo3/Outlook-Calendar.png" },
     // Row 2: positions 4 and 5 will be merged for the text
-    { name: "Integration 5", logo: "/logos/logo5.png" },
-    { name: "Integration 6", logo: "/logos/logo6.png" },
-    { name: "Integration 7", logo: "/logos/logo7.png" },
-    { name: "Integration 8", logo: "/logos/logo8.png" },
-    { name: "Integration 9", logo: "/logos/logo9.png" },
-    { name: "Integration 10", logo: "/logos/logo10.png" },
+    { name: "Integration 5", logo: "/logo3/Looker.png" },
+    { name: "Integration 6", logo: "/logo3/Indeed.png" },
+    { name: "Integration 7", logo: "/logo3/LinkedIn.png" },
+    { name: "Integration 8", logo: "/logo3/Workday.png" },
+    { name: "Integration 9", logo: "/logo3/SAP.png" },
+    { name: "Integration 10", logo: "/logo3/OneDrive.png" },
   ]
 
   return (
@@ -63,8 +64,12 @@ export function IntegrationsSection() {
                     borderRight: index < 3 ? '2px solid rgba(107, 114, 128, 0.4)' : 'none'
                   }}
                 >
-                  <div className="w-12 h-12 rounded-lg bg-muted/50 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded bg-foreground/20"></div>
+                  <div className="w-28 h-28 flex items-center justify-center">
+                    <ImageWithFallback 
+                      src={integration.logo}
+                      alt={integration.name}
+                      className="w-24 h-24 object-contain"
+                    />
                   </div>
                 </div>
               ))}
@@ -83,8 +88,12 @@ export function IntegrationsSection() {
                   borderRight: '2px solid rgba(107, 114, 128, 0.4)'
                 }}
               >
-                <div className="w-12 h-12 rounded-lg bg-muted/50 flex items-center justify-center">
-                  <div className="w-8 h-8 rounded bg-foreground/20"></div>
+                <div className="w-28 h-28 flex items-center justify-center">
+                  <ImageWithFallback 
+                    src={integrations[4].logo}
+                    alt={integrations[4].name}
+                    className="w-24 h-24 object-contain"
+                  />
                 </div>
               </div>
               
@@ -115,15 +124,19 @@ export function IntegrationsSection() {
                   borderBottom: '2px solid rgba(107, 114, 128, 0.4)'
                 }}
               >
-                <div className="w-12 h-12 rounded-lg bg-muted/50 flex items-center justify-center">
-                  <div className="w-8 h-8 rounded bg-foreground/20"></div>
+                <div className="w-28 h-28 flex items-center justify-center">
+                  <ImageWithFallback 
+                    src={integrations[5].logo}
+                    alt={integrations[5].name}
+                    className="w-24 h-24 object-contain"
+                  />
                 </div>
               </div>
             </div>
             
             {/* Row 3 - 4 logos */}
             <div style={{ display: 'flex', height: '120px' }}>
-              {integrations.slice(4, 8).map((integration, index) => (
+              {integrations.slice(6, 10).map((integration, index) => (
                 <div
                   key={`row3-${index}`}
                   className="group flex items-center justify-center transition-all duration-300 hover:bg-background/60 cursor-pointer"
@@ -135,8 +148,12 @@ export function IntegrationsSection() {
                     borderRight: index < 3 ? '2px solid rgba(107, 114, 128, 0.4)' : 'none'
                   }}
                 >
-                  <div className="w-12 h-12 rounded-lg bg-muted/50 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded bg-foreground/20"></div>
+                  <div className="w-28 h-28 flex items-center justify-center">
+                    <ImageWithFallback 
+                      src={integration.logo}
+                      alt={integration.name}
+                      className="w-24 h-24 object-contain"
+                    />
                   </div>
                 </div>
               ))}
