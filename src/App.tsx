@@ -16,6 +16,9 @@ const AgentFlowSection = lazy(() =>
 const WhyCoHyreSection = lazy(() =>
   import("./components/WhyCoHyreSection").then((m) => ({ default: m.WhyCoHyreSection })),
 )
+const IntegrationsSection = lazy(() =>
+  import("./components/IntegrationsSection").then((m) => ({ default: m.IntegrationsSection })),
+)
 const SecurityComplianceSection = lazy(() =>
   import("./components/SecurityComplianceSection").then((m) => ({ default: m.SecurityComplianceSection })),
 )
@@ -128,6 +131,7 @@ export default function App() {
               <ProductSection />
               <AgentFlowSection />
               <WhyCoHyreSection onNavigate={setCurrentPage} />
+              <IntegrationsSection />
               <SecurityComplianceSection />
               <Footer onNavigate={setCurrentPage} />
             </Suspense>

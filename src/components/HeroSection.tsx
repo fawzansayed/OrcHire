@@ -1,7 +1,6 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "motion/react"
+import { useRef, useEffect, useState } from "react"
 import { Badge } from "./ui/badge"
 import { ArrowRight, Sparkles } from "lucide-react"
 
@@ -10,8 +9,25 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onNavigate }: HeroSectionProps) {
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   // ---------------- DATA ----------------
   const trustedCompanies = [
@@ -71,29 +87,24 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16 md:pt-20 lg:pt-24"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-8 md:pt-12 lg:pt-16"
     >
       {/* Background */}
       <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-1/4 left-1/3 w-72 h-72 md:w-96 md:h-96 bg-gradient-to-br from-[#0C8EFF]/8 via-[#9F62ED]/4 to-[#0C8EFF]/6 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className="absolute top-1/4 left-1/3 w-72 h-72 md:w-96 md:h-96 bg-gradient-to-br from-[#0C8EFF]/8 via-[#9F62ED]/4 to-[#0C8EFF]/6 rounded-full blur-3xl animate-pulse-slow"
         />
-        <motion.div
-          className="absolute top-2/3 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#9F62ED]/8 via-[#0C8EFF]/4 to-[#9F62ED]/6 rounded-full blur-3xl"
-          animate={{ scale: [1, 0.8, 1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        <div
+          className="absolute top-2/3 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#9F62ED]/8 via-[#0C8EFF]/4 to-[#9F62ED]/6 rounded-full blur-3xl animate-pulse-slow-delayed"
         />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center mb-8 md:mb-12 lg:mb-16">
         {/* Live Badge */}
-        <motion.div
-          className="mb-6 md:mb-8 mt-16 md:mt-20 lg:mt-24"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+        <div
+          className={`mb-6 md:mb-8 mt-16 md:mt-20 lg:mt-24 transition-all duration-600 ${
+            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
         >
           <div className="inline-block p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-full shadow-lg">
             <Badge className="flex items-center bg-background/80 backdrop-blur-xl text-foreground px-4 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-medium border-0">
@@ -101,14 +112,13 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               Multi-Agent AI Platform Live
             </Badge>
           </div>
-        </motion.div>
+        </div>
 
         {/* Heading */}
-        <motion.div
-          className="mb-4 md:mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.1 }}
+        <div
+          className={`mb-4 md:mb-6 transition-all duration-800 delay-100 ${
+            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+          }`}
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 leading-tight bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] bg-clip-text text-transparent">
             Hiring That Thinks Ahead
@@ -124,26 +134,24 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               Hiring OS
             </span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Description */}
-        <motion.p
-          className="text-xs sm:text-sm md:text-base text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+        <p
+          className={`text-xs sm:text-sm md:text-base text-muted-foreground max-w-3xl mx-auto mb-4 md:mb-6 leading-relaxed transition-all duration-800 delay-300 ${
+            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
         >
           The world's most advanced multi-agent hiring intelligence built by
           global recruiters, for recruiters — redefining hiring.
-        </motion.p>
+        </p>
       </div>
 
       {/* ---------- Trusted Companies (color / perfect sizing) ---------- */}
-      <motion.div
-        className="mb-20 md:mb-28 lg:mb-32"
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.6 }}
+      <div
+        className={`mb-8 md:mb-12 lg:mb-16 transition-all duration-800 delay-600 ${
+          isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+        }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <button
@@ -170,17 +178,15 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                  WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)"
                }} />
 
-          <motion.div
-            className="flex will-change-transform"
-            animate={{ x: [0, -(trustedCompanies.length * STRIDE)] }}
-            transition={{ repeat: Infinity, duration: trustedCompanies.length * 15, ease: "linear" }}
+          <div
+            className="flex will-change-transform animate-scroll-right"
+            style={{ animationDuration: '30s' }}
           >
             {trustedCompanies.concat(trustedCompanies).map((company, i) => (
-              <motion.button
+              <button
                 key={`${company.name}-${i}`}
                 onClick={() => onNavigate("testimonials")}
-                className="group flex flex-shrink-0 items-center cursor-pointer"
-                whileHover={{ scale: 1.04 }}
+                className="group flex flex-shrink-0 items-center cursor-pointer hover:scale-105 transition-transform duration-200"
               >
                 <LogoFrame>
                   <img
@@ -191,18 +197,17 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                     className="block max-h-full max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                   />
                 </LogoFrame>
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ---------- News & Media (grayscale / zoomed-in) ---------- */}
-      <motion.div
-        className="mb-12 md:mb-16"
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.8 }}
+      <div
+        className={`mb-12 md:mb-16 transition-all duration-800 delay-800 ${
+          isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
+        }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center justify-center gap-2 md:gap-3 mb-8 bg-background/60 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl border border-border/30 group">
@@ -228,17 +233,15 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                  WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)"
                }} />
 
-          <motion.div
-            className="flex will-change-transform"
-            animate={{ x: [0, -(mediaPartners.length * STRIDE)] }}
-            transition={{ repeat: Infinity, duration: mediaPartners.length * 15, ease: "linear" }}
+          <div
+            className="flex will-change-transform animate-scroll-right"
+            style={{ animationDuration: '40s' }}
           >
             {mediaPartners.concat(mediaPartners).map((media, i) => (
-              <motion.button
+              <button
                 key={`${media.name}-${i}`}
                 onClick={() => onNavigate("press")}
-                className="group flex flex-shrink-0 items-center cursor-pointer"
-                whileHover={{ scale: 1.04 }}
+                className="group flex flex-shrink-0 items-center cursor-pointer hover:scale-105 transition-transform duration-200"
               >
                 <LogoFrame>
                   <img
@@ -253,11 +256,11 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                     }}
                   />
                 </LogoFrame>
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

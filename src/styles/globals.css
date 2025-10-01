@@ -1,7 +1,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-size: 14px;
+  --font-size: 16px; /* Updated for better readability */
   --background: #ffffff;
   --background-rgb: 255, 255, 255;
   --foreground: oklch(0.145 0 0);
@@ -173,61 +173,115 @@
   }
 }
 
-/**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
- */
-@layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
-    h1 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
 
-    h2 {
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
 
-    h3 {
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
+/* === CORE SETUP === */
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
 
-    h4 {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
+/* Enhanced floating effect for all main sections */
+section {
+  position: relative;
+  transform: translateZ(0);
+}
 
-    p {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-
-    label {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    button {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    input {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
+/* Smooth scroll enhancement for premium feel */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Subtle floating animation for cards and components */
+  .card, [data-slot="card"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card:hover, [data-slot="card"]:hover {
+    transform: translateY(-2px) translateZ(0);
   }
 }
 
+/* === BACKGROUND BUBBLE ANIMATIONS === */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(100px, -50px) scale(1.2); }
+  50% { transform: translate(150px, 30px) scale(0.9); }
+  75% { transform: translate(50px, -20px) scale(1.1); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-120px, 40px) scale(0.8); }
+  50% { transform: translate(-80px, -30px) scale(1.3); }
+  75% { transform: translate(-160px, 60px) scale(0.9); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-80px, 80px) scale(1.1); }
+  50% { transform: translate(60px, -60px) scale(0.85); }
+  75% { transform: translate(-40px, 40px) scale(1.2); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(90px, -40px) scale(1.3); }
+  50% { transform: translate(-30px, -80px) scale(1); }
+  75% { transform: translate(120px, -10px) scale(0.9); }
+}
+
+/* === WHYCOHYRE SECTION ANIMATIONS === */
+/* Fade-in animation for AI agents */
+@keyframes fade-in {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8) translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+/* Background pulse animations for hero */
+@keyframes pulse-slow {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.6; 
+  }
+}
+
+@keyframes pulse-slow-delayed {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.2; 
+  }
+  50% { 
+    transform: scale(0.8);
+    opacity: 0.5; 
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow-delayed {
+  animation: pulse-slow-delayed 10s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* === SCROLLING ANIMATIONS === */
 /* Enhanced infinite scroll animations - Faster speeds */
 @keyframes scroll {
   0% {
@@ -265,7 +319,16 @@
   }
 }
 
-/* Faster animation classes */
+@keyframes scroll-right {
+  from { 
+    transform: translateX(0); 
+  }
+  to { 
+    transform: translateX(-50%); 
+  }
+}
+
+/* Scroll animation classes */
 .animate-scroll {
   animation: scroll 15s linear infinite;
 }
@@ -282,11 +345,138 @@
   animation: scroll-medium 18s linear infinite;
 }
 
+.animate-scroll-right {
+  animation: scroll-right linear infinite;
+}
+
 .animate-scroll:hover,
 .animate-scroll-slow:hover,
 .animate-scroll-fast:hover,
 .animate-scroll-medium:hover {
   animation-play-state: paused;
+}
+
+/* === FLOATING ANIMATIONS FOR AGENT FLOW === */
+@keyframes float-slow {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  25% { 
+    transform: translate(40px, -30px) scale(1.3); 
+  }
+  50% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  75% { 
+    transform: translate(-30px, 20px) scale(0.9); 
+  }
+}
+
+@keyframes float-slow-delayed {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  25% { 
+    transform: translate(-35px, 25px) scale(0.8); 
+  }
+  50% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  75% { 
+    transform: translate(25px, -20px) scale(1.1); 
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.animate-float-slow-delayed {
+  animation: float-slow-delayed 18s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* === SECURITY SECTION ANIMATIONS === */
+@keyframes security-float-1 {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.3; 
+  }
+  25% { 
+    transform: scale(1.1);
+    opacity: 0.5; 
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.4; 
+  }
+  75% { 
+    transform: scale(1.05);
+    opacity: 0.3; 
+  }
+}
+
+@keyframes security-float-2 {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.2; 
+  }
+  25% { 
+    transform: scale(0.9);
+    opacity: 0.4; 
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.3; 
+  }
+  75% { 
+    transform: scale(0.95);
+    opacity: 0.25; 
+  }
+}
+
+.animate-security-float-1 {
+  animation: security-float-1 12s ease-in-out infinite;
+}
+
+.animate-security-float-2 {
+  animation: security-float-2 15s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* === UTILITY CLASSES === */
+/* KPI hover effects - Higher specificity to override any Tailwind classes */
+.kpi-card {
+  transition: all 0.3s ease;
+}
+
+/* Use more specific selectors to ensure they work */
+div.kpi-card:hover div.kpi-number {
+  color: #0C8EFF !important;
+}
+
+div.kpi-card:hover div.kpi-label {
+  color: #0C8EFF !important;
+}
+
+/* Base colors with higher specificity */
+div.kpi-number {
+  color: oklch(0.145 0 0) !important; /* Light mode foreground */
+  transition: color 0.3s ease !important;
+}
+
+div.kpi-label {
+  color: #717182 !important; /* Light mode muted-foreground */
+  transition: color 0.3s ease !important;
+}
+
+/* Dark mode colors with higher specificity */
+.dark div.kpi-number {
+  color: oklch(0.985 0 0) !important; /* Dark mode foreground */
+}
+
+.dark div.kpi-label {
+  color: oklch(0.708 0 0) !important; /* Dark mode muted-foreground */
 }
 
 /* Utility classes */
@@ -305,39 +495,13 @@
   overflow: hidden;
 }
 
-html {
-  font-size: var(--font-size);
-  scroll-behavior: smooth;
-}
-
-/* Enhanced floating effect for all main sections */
-section {
-  position: relative;
-  transform: translateZ(0);
-}
-
-/* Smooth scroll enhancement for premium feel */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Subtle floating animation for cards and components */
-  .card, [data-slot="card"] {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .card:hover, [data-slot="card"]:hover {
-    transform: translateY(-2px) translateZ(0);
-  }
-}
-
 .theme-borders {
   border: 1px solid transparent;
   border-image: linear-gradient(90deg, #0066FF, #7C3AED) 1;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.08); /* subtle outline for light bg */
 }
 
+/* === ROI CALCULATOR CUSTOM CLASSES === */
 /* ROI Calculator custom background classes */
 @layer utilities {
   .roi-blue-bg {

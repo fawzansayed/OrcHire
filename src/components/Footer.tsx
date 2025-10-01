@@ -13,7 +13,7 @@ export function Footer({ onNavigate }: FooterProps) {
       links: [
         { name: "Pricing", page: "pricing" },
         { name: "Comparison", page: "comparison" },
-        { name: "ROI Calculator", page: "roi-calculator" },
+        { name: "Calculate ROI", page: "roi-calculator" },
       ],
     },
     {
