@@ -145,10 +145,27 @@ export function SecurityComplianceSection() {
                     style={{ transitionDelay: `${0.6 + index * 0.1}s` }}
                   >
                     <div className="relative p-6 h-full transition-all duration-500 group overflow-hidden rounded-2xl border border-muted-foreground/20 text-center group-hover:bg-background/50">
-                      {/* Transparent Background - Shows site background */}
-                      <div className="absolute inset-0 rounded-2xl bg-transparent" />
+                      {/* Default Frost Effect - Matching AgentFlowSection */}
+                      <div className="absolute inset-0 rounded-2xl">
+                        <div 
+                          className="absolute inset-0 rounded-2xl"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(255, 255, 255, 0.015) 70%, rgba(255, 255, 255, 0.01) 100%)",
+                            backdropFilter: "blur(8px) saturate(110%)",
+                            WebkitBackdropFilter: "blur(8px) saturate(110%)"
+                          }}
+                        />
+                        <div 
+                          className="absolute inset-0 rounded-2xl"
+                          style={{
+                            background: "radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.008) 80%)",
+                            backdropFilter: "blur(6px)",
+                            WebkitBackdropFilter: "blur(6px)"
+                          }}
+                        />
+                      </div>
 
-                      {/* Hover Gradient Effect - Top Right to Bottom Left with Cloudy Blue/Purple */}
+                      {/* Hover Gradient Effect - Enhanced on Hover */}
                       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div 
                           className="absolute inset-0 rounded-2xl"
@@ -220,10 +237,27 @@ export function SecurityComplianceSection() {
                     style={{ transitionDelay: `${1.0 + index * 0.1}s` }}
                   >
                     <div className="relative p-6 h-full transition-all duration-500 group overflow-hidden rounded-2xl border border-muted-foreground/20 group-hover:bg-background/40">
-                      {/* Transparent Background - Shows site background */}
-                      <div className="absolute inset-0 rounded-2xl bg-transparent" />
+                      {/* Default Frost Effect - Matching AgentFlowSection */}
+                      <div className="absolute inset-0 rounded-2xl">
+                        <div 
+                          className="absolute inset-0 rounded-2xl"
+                          style={{
+                            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(255, 255, 255, 0.015) 70%, rgba(255, 255, 255, 0.01) 100%)",
+                            backdropFilter: "blur(8px) saturate(110%)",
+                            WebkitBackdropFilter: "blur(8px) saturate(110%)"
+                          }}
+                        />
+                        <div 
+                          className="absolute inset-0 rounded-2xl"
+                          style={{
+                            background: "radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.008) 80%)",
+                            backdropFilter: "blur(6px)",
+                            WebkitBackdropFilter: "blur(6px)"
+                          }}
+                        />
+                      </div>
 
-                      {/* Hover Gradient Effect - Top Right to Bottom Left with Cloudy Blue/Purple */}
+                      {/* Hover Gradient Effect - Enhanced on Hover */}
                       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div 
                           className="absolute inset-0 rounded-2xl"
@@ -261,10 +295,27 @@ export function SecurityComplianceSection() {
           {/* Trust Statement */}
           <div className={`text-center mt-16 transition-all duration-1000 delay-600 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="max-w-3xl mx-auto relative p-8 transition-all duration-500 group overflow-hidden rounded-2xl border border-muted-foreground/20 group-hover:bg-background/50 group-hover:shadow-md">
-              {/* Transparent Background - Shows site background */}
-              <div className="absolute inset-0 rounded-2xl bg-transparent" />
+              {/* Default Frost Effect - Matching AgentFlowSection */}
+              <div className="absolute inset-0 rounded-2xl">
+                <div 
+                  className="absolute inset-0 rounded-2xl"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(255, 255, 255, 0.015) 70%, rgba(255, 255, 255, 0.01) 100%)",
+                    backdropFilter: "blur(8px) saturate(110%)",
+                    WebkitBackdropFilter: "blur(8px) saturate(110%)"
+                  }}
+                />
+                <div 
+                  className="absolute inset-0 rounded-2xl"
+                  style={{
+                    background: "radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.008) 80%)",
+                    backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)"
+                  }}
+                />
+              </div>
 
-              {/* Hover Gradient Effect - Top Right to Bottom Left with Cloudy Blue/Purple */}
+              {/* Hover Gradient Effect - Enhanced on Hover */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <div 
                   className="absolute inset-0 rounded-2xl"

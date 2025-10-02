@@ -117,7 +117,7 @@ export function AgentFlowSection() {
           </p>
         </div>
 
-        {/* Core Capabilities - Plain Cards with Hover Gradient */}
+        {/* Core Capabilities - Cards with Default Frost Effect */}
         <div className="grid lg:grid-cols-3 gap-8 mb-20">
           {platformOverview.coreCapabilities.map((cap, index) => {
             const Icon = cap.icon;
@@ -130,10 +130,27 @@ export function AgentFlowSection() {
                 style={{ transitionDelay: `${0.8 + index * 0.1}s` }}
               >
                 <div className="relative p-8 h-full transition-all duration-500 group overflow-hidden rounded-2xl border border-muted-foreground/20">
-                  {/* Plain Background - Shows site background */}
-                  <div className="absolute inset-0 rounded-2xl bg-transparent" />
+                  {/* Default Frost Effect - Light and Subtle */}
+                  <div className="absolute inset-0 rounded-2xl">
+                    <div 
+                      className="absolute inset-0 rounded-2xl"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(255, 255, 255, 0.015) 70%, rgba(255, 255, 255, 0.01) 100%)",
+                        backdropFilter: "blur(8px) saturate(110%)",
+                        WebkitBackdropFilter: "blur(8px) saturate(110%)"
+                      }}
+                    />
+                    <div 
+                      className="absolute inset-0 rounded-2xl"
+                      style={{
+                        background: "radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.008) 80%)",
+                        backdropFilter: "blur(6px)",
+                        WebkitBackdropFilter: "blur(6px)"
+                      }}
+                    />
+                  </div>
 
-                  {/* Hover Gradient Effect - Top Right to Bottom Left with Cloudy Blue/Purple */}
+                  {/* Hover Gradient Effect - Enhanced on Hover */}
                   <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div 
                       className="absolute inset-0 rounded-2xl"

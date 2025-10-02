@@ -57,37 +57,14 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
   ]
 
   // ---------------- SIZING / STRIDE ----------------
-  // We'll use ONE tile size for both rows.
-  const H_MARGIN = 32 // mx-8 on each tile
-  const TILE_WIDTH = 208 // Tailwind w-52 (same for both rows)
-  const TILE_HEIGHT = 96 // Tailwind h-24
-
-  const STRIDE = TILE_WIDTH + H_MARGIN * 2 // 208 + 64 = 272
-
-  // Uniform frame (same for both rows) - forced dimensions
-  const LogoFrame = ({ children }: { children: React.ReactNode }) => (
-    <div
-      className="flex items-center justify-center overflow-hidden flex-shrink-0
-                 border-2 border-muted-foreground/60 rounded-xl bg-background/70 backdrop-blur-sm
-                 mx-8"
-      style={{ 
-        width: `${TILE_WIDTH}px`, 
-        height: `${TILE_HEIGHT}px`,
-        minWidth: `${TILE_WIDTH}px`, 
-        minHeight: `${TILE_HEIGHT}px`,
-        maxWidth: `${TILE_WIDTH}px`, 
-        maxHeight: `${TILE_HEIGHT}px`,
-        padding: '16px'
-      }}
-    >
-      {children}
-    </div>
-  )
+  // Connected boxes with consistent dimensions
+  const TILE_WIDTH = 176     // Consistent width for both rows
+  const TILE_HEIGHT = 80     // Consistent height for both rows
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-8 md:pt-12 lg:pt-16"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16 md:pt-20 lg:pt-24"
     >
       {/* Background */}
       <div className="absolute inset-0">
@@ -177,7 +154,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                  maskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)",
                  WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)"
                }} />
-
+          
           <div
             className="flex will-change-transform animate-scroll-right"
             style={{ animationDuration: '30s' }}
@@ -188,15 +165,32 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                 onClick={() => onNavigate("testimonials")}
                 className="group flex flex-shrink-0 items-center cursor-pointer hover:scale-105 transition-transform duration-200"
               >
-                <LogoFrame>
+                <div 
+                  className="flex items-center justify-center overflow-hidden flex-shrink-0 
+                             bg-background/40 backdrop-blur-md transition-all duration-300 hover:bg-background/60"
+                  style={{ 
+                    width: `${TILE_WIDTH}px`, 
+                    height: `${TILE_HEIGHT}px`,
+                    minWidth: `${TILE_WIDTH}px`, 
+                    minHeight: `${TILE_HEIGHT}px`,
+                    maxWidth: `${TILE_WIDTH}px`, 
+                    maxHeight: `${TILE_HEIGHT}px`,
+                    padding: '16px',
+                    borderRight: '2px solid rgba(107, 114, 128, 0.4)',
+                    borderTop: '2px solid rgba(107, 114, 128, 0.4)',
+                    borderBottom: '2px solid rgba(107, 114, 128, 0.4)',
+                    borderLeft: i === 0 ? '2px solid rgba(107, 114, 128, 0.4)' : 'none'
+                  }}
+                >
                   <img
                     src={company.logo}
                     alt={`${company.name} logo`}
                     loading="lazy"
                     decoding="async"
-                    className="block max-h-full max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                    className="block object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                    style={{ maxWidth: '100px', maxHeight: '32px' }}
                   />
-                </LogoFrame>
+                </div>
               </button>
             ))}
           </div>
@@ -210,8 +204,8 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          <div className="inline-flex items-center justify-center gap-2 md:gap-3 mb-8 bg-background/60 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl border border-border/30 group">
-            <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-foreground transition-colors duration-300 group-hover:text-[#0C8EFF]" />
+          <div className="inline-flex items-center justify-center gap-2 md:gap-3 mb-8 bg-background/60 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl border border-border/30">
+            <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-[#0C8EFF]" />
             <p className="text-sm md:text-base font-semibold text-foreground">
               News & Media
             </p>
@@ -232,7 +226,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                  maskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)",
                  WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)"
                }} />
-
+          
           <div
             className="flex will-change-transform animate-scroll-right"
             style={{ animationDuration: '40s' }}
@@ -243,19 +237,37 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
                 onClick={() => onNavigate("press")}
                 className="group flex flex-shrink-0 items-center cursor-pointer hover:scale-105 transition-transform duration-200"
               >
-                <LogoFrame>
+                <div 
+                  className="flex items-center justify-center overflow-hidden flex-shrink-0
+                             bg-background/40 backdrop-blur-md transition-all duration-300 hover:bg-background/60"
+                  style={{ 
+                    width: `${TILE_WIDTH}px`, 
+                    height: `${TILE_HEIGHT}px`,
+                    minWidth: `${TILE_WIDTH}px`, 
+                    minHeight: `${TILE_HEIGHT}px`,
+                    maxWidth: `${TILE_WIDTH}px`, 
+                    maxHeight: `${TILE_HEIGHT}px`,
+                    padding: '16px',
+                    borderRight: '2px solid rgba(107, 114, 128, 0.4)',
+                    borderTop: '2px solid rgba(107, 114, 128, 0.4)',
+                    borderBottom: '2px solid rgba(107, 114, 128, 0.4)',
+                    borderLeft: i === 0 ? '2px solid rgba(107, 114, 128, 0.4)' : 'none'
+                  }}
+                >
                   <img
                     src={media.logo}
                     alt={`${media.name} logo`}
                     loading="lazy"
                     decoding="async"
-                    className="block max-h-full max-w-full object-contain transition-all duration-300"
+                    className="object-contain transition-all duration-300"
                     style={{
+                      maxWidth: '100px',
+                      maxHeight: '32px',
                       filter: "grayscale(1) brightness(1) contrast(0.2)",
                       WebkitFilter: "grayscale(1) brightness(1) contrast(0.2)",
                     }}
                   />
-                </LogoFrame>
+                </div>
               </button>
             ))}
           </div>

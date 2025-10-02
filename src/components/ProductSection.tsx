@@ -110,31 +110,48 @@ export function ProductSection() {
           </p>
         </div>
 
-        {/* AI Process Flow Infographic - Standardized Card */}
+        {/* AI Process Flow Infographic - Standardized Card with Frost Effect */}
         <div className="relative max-w-7xl mx-auto">
-          {/* Plain Card with Purple Border and Container Hover Effect */}
+          {/* Main Container with Frost Effect */}
           <div 
             className="relative rounded-3xl p-8 md:p-12 overflow-hidden group transition-all duration-500"
             style={{
               border: "3px solid rgba(159, 98, 237, 0.3)"
             }}
           >
-            {/* Plain Background - Shows site background */}
-            <div className="absolute inset-0 rounded-3xl bg-transparent" />
+            {/* Default Frost Effect - Matching AgentFlowSection */}
+            <div className="absolute inset-0 rounded-3xl">
+              <div 
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(255, 255, 255, 0.015) 70%, rgba(255, 255, 255, 0.01) 100%)",
+                  backdropFilter: "blur(8px) saturate(110%)",
+                  WebkitBackdropFilter: "blur(8px) saturate(110%)"
+                }}
+              />
+              <div 
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background: "radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.008) 80%)",
+                  backdropFilter: "blur(6px)",
+                  WebkitBackdropFilter: "blur(6px)"
+                }}
+              />
+            </div>
 
-            {/* Container Hover Gradient Effect */}
+            {/* Hover Gradient Effect - Enhanced on Hover */}
             <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
               <div 
                 className="absolute inset-0 rounded-3xl"
                 style={{
-                  background: "linear-gradient(135deg, rgba(12, 142, 255, 0.08) 0%, rgba(159, 98, 237, 0.06) 35%, rgba(12, 142, 255, 0.04) 70%, transparent 100%)",
+                  background: "linear-gradient(135deg, rgba(12, 142, 255, 0.15) 0%, rgba(159, 98, 237, 0.12) 35%, rgba(12, 142, 255, 0.08) 70%, transparent 100%)",
                   filter: "blur(0.5px)"
                 }}
               />
               <div 
                 className="absolute inset-0 rounded-3xl"
                 style={{
-                  background: "radial-gradient(ellipse at top right, rgba(12, 142, 255, 0.06) 0%, rgba(159, 98, 237, 0.03) 40%, transparent 80%)"
+                  background: "radial-gradient(ellipse at top right, rgba(12, 142, 255, 0.1) 0%, rgba(159, 98, 237, 0.06) 40%, transparent 80%)"
                 }}
               />
             </div>
