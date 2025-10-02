@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "motion/react"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
 import {
@@ -254,81 +254,9 @@ export function PricingPage() {
   }
 
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-background py-20 px-4 sm:px-6 lg:px-8">
-      {/* Fluid Organic Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Base background (inline styles so purge can't strip it) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundColor: "hsl(var(--background))",
-            backgroundImage:
-              "radial-gradient(900px 600px at -120px -120px, rgba(12,142,255,.18), transparent 55%)," +
-              "radial-gradient(800px 700px at 110% 120%, rgba(159,98,237,.16), transparent 55%)," +
-              "radial-gradient(600px 500px at 50% 10%, rgba(34,197,94,.12), transparent 60%)",
-          }}
-        />
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
 
-        {/* Organic flowing shapes */}
-        <motion.div
-          className="absolute top-0 left-0 w-[60%] h-[80%]"
-          style={{
-            opacity: 0.7,
-            background:
-              "linear-gradient(135deg, rgba(255,154,115,0.5) 0%, rgba(255,206,154,0.32) 100%)",
-            borderRadius: "0% 100% 80% 20% / 0% 50% 50% 100%",
-            filter: "blur(70px)",
-          }}
-          animate={{
-            borderRadius: [
-              "0% 100% 80% 20% / 0% 50% 50% 100%",
-              "20% 80% 100% 0% / 50% 0% 100% 50%",
-              "0% 100% 80% 20% / 0% 50% 50% 100%",
-            ],
-          }}
-          transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        />
-
-        <motion.div
-          className="absolute bottom-0 right-0 w-[70%] h-[70%]"
-          style={{
-            opacity: 0.62,
-            background:
-              "linear-gradient(225deg, rgba(159,98,237,0.42) 0%, rgba(168,85,247,0.25) 100%)",
-            borderRadius: "80% 20% 0% 100% / 50% 100% 0% 50%",
-            filter: "blur(90px)",
-          }}
-          animate={{
-            borderRadius: [
-              "80% 20% 0% 100% / 50% 100% 0% 50%",
-              "100% 0% 20% 80% / 100% 50% 50% 0%",
-              "80% 20% 0% 100% / 50% 100% 0% 50%",
-            ],
-          }}
-          transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 5 }}
-        />
-
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[60%]"
-          style={{
-            opacity: 0.56,
-            background:
-              "linear-gradient(45deg, rgba(6,182,212,0.36) 0%, rgba(34,197,94,0.24) 100%)",
-            borderRadius: "50% 50% 50% 50% / 60% 40% 60% 40%",
-            filter: "blur(110px)",
-          }}
-          animate={{
-            borderRadius: [
-              "50% 50% 50% 50% / 60% 40% 60% 40%",
-              "40% 60% 40% 60% / 50% 50% 50% 50%",
-              "50% 50% 50% 50% / 60% 40% 60% 40%",
-            ],
-          }}
-          transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 10 }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <motion.div
           className="text-center mb-16"
@@ -392,6 +320,7 @@ export function PricingPage() {
                         className={`w-3 h-3 transition-colors duration-200 ${
                           currency === "INR" ? "text-background" : "text-muted-foreground/60"
                         }`}
+                        style={{ transform: "translateX(-4px)" }}
                       />
                     </motion.button>
                   </div>
@@ -434,7 +363,7 @@ export function PricingPage() {
                         className={`absolute inset-0 flex items-center justify-center leading-none text-xs font-medium transition-colors duration-200 ${
                           billingPeriod === "annually" ? "text-background" : "text-muted-foreground/60"
                         }`}
-                        style={{ transform: "translateY(1px)" }}
+                        style={{ transform: "translateX(-5px) translateY(1px)" }}
                       >
                         A
                       </span>

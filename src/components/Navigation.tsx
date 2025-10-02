@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Menu, X, Sun, Moon, ArrowRight, Sparkles } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { Badge } from "./ui/badge";
  import orchireLogoLight from "../../public/assets/whitelogoOrcHireMain.png";
  
  import orchireLogoDark from "../../public/assets/BlackLogoOrcHireMain.png";
@@ -29,8 +30,6 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
 
   const navItems = [
     { name: "Home", page: "home" },
-    { name: "Candidates", page: "candidates" },
-    { name: "Jobs", page: "jobs" },
   ];
 
   return (
@@ -106,7 +105,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
           <div className="hidden md:flex items-center space-x-4">
             {/* Sign In Button with Glass Effect */}
             <motion.button
-              onClick={() => onNavigate("contact")}
+              onClick={() => window.open("https://aria.cohyre.ai", "_blank")}
               className="relative px-4 py-2 rounded-xl text-sm font-medium overflow-hidden group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -132,73 +131,22 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
               </span>
             </motion.button>
 
-            {/* Enhanced Premium Get Started Button */}
-    <motion.div
-  className="relative group"
-  whileHover={{ scale: 1.05, y: -2 }}
-  whileTap={{ scale: 0.95 }}
->
-  {/* Outer glow effect */}
-  <div className="absolute -inset-1 bg-gradient-to-r from-[#0C8EFF]/20 via-[#9F62ED]/20 to-[#0C8EFF]/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
-  
-  {/* Gradient border with enhanced animation */}
-  <div className="absolute inset-0 bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] rounded-xl p-[1.5px] group-hover:p-[2px] transition-all duration-300">
-    <div className="w-full h-full bg-background rounded-[10px]" />
-  </div>
-  
-  <button
-    onClick={() => onNavigate("pricing")}
-    className="relative px-6 py-3 rounded-xl text-sm font-semibold overflow-hidden border border-primary/70 hover:border-primary"
-  >
-    {/* Enhanced glass background */}
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-background/90 backdrop-blur-xl rounded-xl"
-      initial={{ opacity: 1 }}
-      whileHover={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
-    />
-    
-    {/* Premium gradient overlay */}
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] rounded-xl opacity-0 group-hover:opacity-100"
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileHover={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4 }}
-    />
 
-    {/* Floating light effect */}
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100"
-      initial={{ opacity: 0 }}
-      whileHover={{ opacity: 1 }}
-      transition={{ duration: 0.3, delay: 0.1 }}
-    />
 
-    {/* Shimmer effect */}
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
-      animate={{ x: [-200, 200] }}
-      transition={{
-        duration: 1.5,
-        repeat: Infinity,
-        repeatDelay: 2,
-        ease: "easeInOut"
-      }}
-    />
-
-    {/* Button Content */}
-    <div className="relative z-10 flex items-center gap-2 text-foreground group-hover:text-foreground transition-colors duration-300">
-      <motion.div
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-      >
-        <Sparkles className="w-4 h-4" />
-      </motion.div>
-      <span className="font-semibold">Get Started for Free</span>
-      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-    </div>
-  </button>
-</motion.div>
+            {/* Book a Demo Button - Badge Style (CTA) */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="inline-block p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-full shadow-lg">
+                <button
+                  onClick={() => onNavigate("contact")}
+                  className="flex items-center bg-background/80 backdrop-blur-xl text-foreground px-4 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-medium border-0 transition-all duration-300 hover:bg-background/90 hover:text-[#0C8EFF]"
+                >
+                  Book a Demo
+                </button>
+              </div>
+            </motion.div>
 
 
 
@@ -302,7 +250,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
               {/* Mobile Sign In */}
               <motion.button
                 onClick={() => {
-                  onNavigate("contact");
+                  window.open("https://aria.cohyre.ai", "_blank");
                   setIsOpen(false);
                 }}
                 className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground relative overflow-hidden group transition-all duration-300"
@@ -316,21 +264,26 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
                 />
                 <span className="relative z-10">Sign In</span>
               </motion.button>
+
+
               
-              {/* Mobile Get Started for Free */}
-              <div className="p-[2px] bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] rounded-xl">
-                <motion.button
-                  onClick={() => {
-                    onNavigate("pricing");
-                    setIsOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] text-white hover:shadow-lg transition-all duration-300 flex items-center gap-2"
-                  whileHover={{ x: 4 }}
-                >
-                  <Sparkles className="w-4 h-4" />
-                  Get Started for Free
-                </motion.button>
-              </div>
+              {/* Mobile Book a Demo - Badge Style (CTA) */}
+              <motion.div
+                whileHover={{ x: 4 }}
+                className="flex justify-center"
+              >
+                <div className="inline-block p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-full shadow-lg">
+                  <button
+                    onClick={() => {
+                      onNavigate("contact");
+                      setIsOpen(false);
+                    }}
+                    className="flex items-center bg-background/80 backdrop-blur-xl text-foreground px-4 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-medium border-0 transition-all duration-300 hover:bg-background/90 hover:text-[#0C8EFF]"
+                  >
+                    Book a Demo
+                  </button>
+                </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>

@@ -87,30 +87,23 @@ const OptimizedBackground = memo(({ scrollYProgress }: { scrollYProgress: any })
   )
 })
 
-const ScrollToTopButton = memo(({ scrollYProgress }: { scrollYProgress: any }) => (
-  <motion.div
-    className="fixed bottom-8 right-8 z-50"
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 2, duration: 0.3 }}
-  >
-    <motion.button
-      className="w-11 h-11 bg-card/80 backdrop-blur-md border border-border rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+const ScrollToTopButton = memo(() => (
+  <div className="fixed bottom-8 right-8 z-50 animate-fade-in-delayed">
+    <button
+      className="w-12 h-12 bg-card/90 backdrop-blur-md border-2 border-border rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 hover:border-primary/30"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
     >
       <svg
-        className="w-4 h-4 text-muted-foreground mx-auto"
+        className="w-5 h-5 text-foreground mx-auto"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
-        strokeWidth={1.5}
+        strokeWidth={2.5}
       >
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
       </svg>
-    </motion.button>
-  </motion.div>
+    </button>
+  </div>
 ))
 
 export default function App() {
