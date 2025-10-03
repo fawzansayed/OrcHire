@@ -161,6 +161,11 @@
   --roi-orange-border: rgb(249 115 22 / 0.5);
   --roi-green-border: rgb(34 197 94 / 0.5);
   --roi-red-border: rgb(239 68 68 / 0.5);
+  
+  /* Custom animations for TalentGPT */
+  --animate-fade-in: fade-in-scale 0.5s ease-out forwards;
+  --animate-talent-fade-up: talent-fade-up 0.6s ease-out forwards;
+  --animate-talent-typing: talent-typing 0.1s ease-in-out;
 }
 
 @layer base {
@@ -179,12 +184,18 @@
 html {
   font-size: var(--font-size);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Enhanced floating effect for all main sections */
 section {
   position: relative;
   transform: translateZ(0);
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
 }
 
 /* Smooth scroll enhancement for premium feel */
@@ -444,6 +455,56 @@ section {
   animation-delay: 3s;
 }
 
+/* === TALENTGPT SECTION ANIMATIONS === */
+@keyframes talent-typing {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes talent-fade-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-talent-typing {
+  animation: talent-typing 0.1s ease-in-out;
+}
+
+.animate-talent-fade-up {
+  animation: talent-fade-up 0.6s ease-out forwards;
+}
+
+/* Additional animations for better sticky scroll support */
+@keyframes fade-in-scale {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in-scale 0.5s ease-out forwards !important;
+}
+
+/* Custom scale animations for hover effects */
+.hover\:scale-102:hover {
+  transform: scale(1.02) !important;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05) !important;
+}
+
 /* === UTILITY CLASSES === */
 /* KPI hover effects - Higher specificity to override any Tailwind classes */
 .kpi-card {
@@ -528,4 +589,61 @@ div.kpi-label {
     background-color: var(--roi-red-bg);
     border-color: var(--roi-red-border);
   }
+}
+
+/* === CRITICAL ANIMATIONS FOR STICKY SCROLL === */
+/* These must be at the end to override any Tailwind conflicts */
+
+/* Ensure animations work with high specificity */
+.animate-fade-in {
+  animation: fade-in-scale 0.5s ease-out forwards !important;
+  animation-fill-mode: forwards !important;
+}
+
+.animate-talent-fade-up {
+  animation: talent-fade-up 0.6s ease-out forwards !important;
+  animation-fill-mode: forwards !important;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+/* Scale hover animations with high specificity */
+.hover\:scale-102:hover {
+  transform: scale(1.02) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05) !important;
+  transition: transform 0.3s ease !important;
+}
+
+/* Ensure section positioning for sticky scroll */
+section {
+  position: relative !important;
+  transform: translateZ(0) !important;
+}
+
+/* Ensure minimum height for intersection observer */
+.min-h-screen {
+  min-height: 100vh !important;
+}
+
+/* Smooth transitions for opacity and transform */
+.transition-all {
+  transition: all 0.5s ease-out !important;
+}
+
+.transition-opacity {
+  transition: opacity 0.5s ease-out !important;
+}
+
+.duration-500 {
+  transition-duration: 0.5s !important;
+}
+
+.ease-out {
+  transition-timing-function: ease-out !important;
 }

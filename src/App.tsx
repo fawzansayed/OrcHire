@@ -9,6 +9,9 @@ import { BackgroundBubbles } from "./components/BackgroundBubbles"
 
 const Navigation = lazy(() => import("./components/Navigation").then((m) => ({ default: m.Navigation })))
 const HeroSection = lazy(() => import("./components/HeroSection").then((m) => ({ default: m.HeroSection })))
+const TalentGPTSection = lazy(() => 
+  import("./components/TalentGPTSection").then((m) => ({ default: m.TalentGPTSection })),
+)
 const ProductSection = lazy(() => import("./components/ProductSection").then((m) => ({ default: m.ProductSection })))
 const AgentFlowSection = lazy(() =>
   import("./components/AgentFlowSection").then((m) => ({ default: m.AgentFlowSection })),
@@ -121,6 +124,7 @@ export default function App() {
           <main className="relative">
             <Suspense fallback={<LoadingSpinner />}>
               <HeroSection onNavigate={setCurrentPage} />
+              <TalentGPTSection />
               <ProductSection />
               <AgentFlowSection />
               <WhyCoHyreSection onNavigate={setCurrentPage} />
