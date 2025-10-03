@@ -176,14 +176,13 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
                   }}
                 />
                 
-                {/* Inner circle with darker background */}
+                {/* Inner circle with theme-aware background */}
                 <div 
-                  className="relative w-44 h-44 rounded-full flex flex-col items-center justify-center"
+                  className="relative w-44 h-44 rounded-full flex flex-col items-center justify-center bg-background/80 dark:bg-black/60"
                   style={{
-                    background: "radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.8) 70%, rgba(12, 142, 255, 0.1) 100%)",
-                    backdropFilter: "blur(8px)",
+                    backdropFilter: "blur(12px)",
                     border: "1px solid rgba(12, 142, 255, 0.4)",
-                    boxShadow: "inset 0 2px 10px rgba(0, 0, 0, 0.3)"
+                    boxShadow: "inset 0 2px 10px rgba(12, 142, 255, 0.1)"
                   }}
                 >
                   {/* Brain icon */}
@@ -195,10 +194,10 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
                   <div className="text-center">
                     <div className="text-xl font-semibold mb-1">
                       <span className="bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED] bg-clip-text text-transparent">
-                        aria fusion
+                        Aria Fusion
                       </span>
                     </div>
-                    <div className="text-sm text-gray-400">Multi-Agent AI</div>
+                    <div className="text-sm text-muted-foreground">Multi-Agent AI</div>
                   </div>
                 </div>
               </div>
