@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from "motion/react"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
 import {
-  Check,
-  X,
   ArrowRight,
   Sparkles,
   UserCheck,
@@ -33,9 +31,9 @@ interface PricingTier {
   originalPriceINR?: number
   icon: any
   popular?: boolean
+  inheritedFeatures?: string
   features: Array<{
     name: string
-    included: boolean
     highlight?: boolean
   }>
   cta: string
@@ -70,15 +68,13 @@ export function PricingPage() {
       originalPriceINR: 6000,
       icon: UserCheck,
       features: [
-        { name: "400 AI Credits", included: true },
-        { name: "1 User - Free Posting", included: true },
-        { name: "AI Resume Sourcing", included: true },
-        { name: "AI CV Assessment", included: true },
-        { name: "Email API", included: true },
-        { name: "In-built ATS", included: false },
-        { name: "OrcHire Pool Suggestions", included: false },
-        { name: "AI Conversation Assessment", included: false },
-        { name: "AI Voice Calling", included: false },
+        { name: "Up to 2 Positions" },
+        { name: "400 AI Credits" },
+        { name: "1 User, 1 Job Post" },
+        { name: "AI Passive Sourcing (400M+ LinkedIn Profiles)" },
+        { name: "AI CV Assessment" },
+        { name: "OrcHire Pool Suggestions" },
+        { name: "In-built ATS" },
       ],
       cta: "Contact Us",
       ctaStyle: "secondary",
@@ -92,16 +88,11 @@ export function PricingPage() {
       monthlyPriceINR: 42000,
       annualPriceINR: 42000,
       icon: Rocket,
+      inheritedFeatures: "Everything in Trial User",
       features: [
-        { name: "2000 AI Credits", included: true, highlight: true },
-        { name: "Multiple Users & Job Postings", included: true },
-        { name: "Unlimited Users & Jobs", included: true },
-        { name: "AI Resume Sourcing", included: true },
-        { name: "OrcHire Pool Suggestions", included: true },
-        { name: "AI CV Assessment", included: true },
-        { name: "In-built ATS", included: true },
-        { name: "AI Conversation Assessment", included: false },
-        { name: "AI Voice Calling", included: false },
+        { name: "Up to 5 Positions" },
+        { name: "2000 AI Credits" },
+        { name: "Multiple Users, Up to 5 Job Posts" },
       ],
       cta: "Contact Us",
       ctaStyle: "secondary",
@@ -116,15 +107,13 @@ export function PricingPage() {
       annualPriceINR: 72000,
       icon: Target,
       popular: true,
+      inheritedFeatures: "Everything in Starter",
       features: [
-        { name: "5000 AI Credits", included: true, highlight: true },
-        { name: "Unlimited Users & Jobs", included: true },
-        { name: "AI Resume Sourcing", included: true },
-        { name: "AI CV Assessment", included: true },
-        { name: "OrcHire Pool Suggestions", included: true },
-        { name: "AI Conversation Assessment", included: true, highlight: true },
-        { name: "In-built ATS", included: true },
-        { name: "AI Voice Calling", included: false },
+        { name: "Up to 12 Positions" },
+        { name: "5000 AI Credits" },
+        { name: "Multiple Users & Job Posts" },
+        { name: "AI Conversation Assessment" },
+        { name: "AI Voice Calling" },
       ],
       cta: "Contact Us",
       ctaStyle: "primary",
@@ -138,15 +127,14 @@ export function PricingPage() {
       monthlyPriceINR: 150000,
       annualPriceINR: 125000,
       icon: Building2,
+      inheritedFeatures: "Everything in Growth",
       features: [
-        { name: "10000 AI Credits", included: true, highlight: true },
-        { name: "Unlimited Users & Jobs", included: true },
-        { name: "AI Resume Sourcing", included: true },
-        { name: "AI CV Assessment", included: true },
-        { name: "OrcHire Pool Suggestions", included: true },
-        { name: "AI Conversation Assessment", included: true },
-        { name: "AI Voice Calling", included: true, highlight: true },
-        { name: "In-built ATS", included: true },
+        { name: "Up to 20 Positions" },
+        { name: "10000 AI Credits" },
+        { name: "Unlimited Users & Jobs" },
+        { name: "Premium Support" },
+        { name: "Custom Integrations" },
+        { name: "Dedicated Account Manager" },
       ],
       cta: "Contact Us",
       ctaStyle: "secondary",
@@ -160,14 +148,14 @@ export function PricingPage() {
       monthlyPriceINR: 0,
       annualPriceINR: 0,
       icon: Crown,
+      inheritedFeatures: "Everything in Scaleup",
       features: [
-        { name: "Everything in Scaleup", included: true },
-        { name: "Custom Integrations", included: true, highlight: true },
-        { name: "Custom ATS", included: true },
-        { name: "Premium Support", included: true },
-        { name: "Dedicated Account Manager", included: true, highlight: true },
-        { name: "Volume-based Pricing", included: true },
-        { name: "White-label Solution", included: true, highlight: true },
+        { name: "Custom Positions" },
+        { name: "Custom AI Credits" },
+        { name: "Scale Up Users & Jobs" },
+        { name: "Volume-based Pricing" },
+        { name: "White-label Solution" },
+        { name: "Priority Implementation Support" },
       ],
       cta: "Contact Us",
       ctaStyle: "secondary",
@@ -528,47 +516,53 @@ export function PricingPage() {
                     </div>
 
                     <div className="space-y-2">
-                      {tier.features.slice(0, 6).map((feature, featureIndex) => (
+                      {/* Inherited features section - at the top */}
+                      {tier.inheritedFeatures && (
+                        <motion.div
+                          className="flex items-start gap-3"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: 0.4 }}
+                        >
+                          <div className="flex-shrink-0 w-2 h-2 rounded-full mt-1 bg-muted-foreground/50" />
+                          <span className="text-xs leading-relaxed text-muted-foreground italic">
+                            {tier.inheritedFeatures}
+                          </span>
+                        </motion.div>
+                      )}
+
+                      {/* Plus section - second at the top */}
+                      {tier.inheritedFeatures && (
+                        <motion.div
+                          className="flex items-start gap-3"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: 0.45 }}
+                        >
+                          <div className="flex-shrink-0 w-2 h-2 flex items-center justify-center mt-1">
+                            <span className="text-xs text-muted-foreground font-medium">+</span>
+                          </div>
+                          <span className="text-xs leading-relaxed text-muted-foreground font-medium">
+                            Plus:
+                          </span>
+                        </motion.div>
+                      )}
+
+                      {/* All tier features */}
+                      {tier.features.map((feature, featureIndex) => (
                         <motion.div
                           key={featureIndex}
-                          className="flex items-start gap-2"
+                          className="flex items-start gap-3"
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: 0.5 + featureIndex * 0.05 }}
                         >
-                          <div
-                            className={`flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center mt-0.5 ${
-                              feature.included
-                                ? feature.highlight
-                                  ? "bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED]"
-                                  : "bg-green-500/20"
-                                : "bg-muted/50"
-                            }`}
-                          >
-                            {feature.included ? (
-                              <Check className={`w-2.5 h-2.5 ${feature.highlight ? "text-white" : "text-green-600"}`} />
-                            ) : (
-                              <X className="w-2.5 h-2.5 text-muted-foreground" />
-                            )}
-                          </div>
-                          <span
-                            className={`text-xs ${
-                              feature.included
-                                ? feature.highlight
-                                  ? "text-foreground font-medium"
-                                  : "text-foreground"
-                                : "text-muted-foreground"
-                            }`}
-                          >
+                          <div className="flex-shrink-0 w-2 h-2 rounded-full mt-1 bg-muted-foreground" />
+                          <span className="text-xs leading-relaxed text-foreground">
                             {feature.name}
                           </span>
                         </motion.div>
                       ))}
-                      {tier.features.length > 6 && (
-                        <p className="text-xs text-muted-foreground italic">
-                          +{tier.features.length - 6} more features
-                        </p>
-                      )}
                     </div>
                   </div>
                 </div>
