@@ -647,3 +647,33 @@ section {
 .ease-out {
   transition-timing-function: ease-out !important;
 }
+
+/* === CUSTOM SEPARATOR LINES === */
+.separator-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.6), transparent);
+  margin: 0 auto;
+}
+
+.separator-line-secondary {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.4), transparent);
+  margin: 0 auto;
+}
+
+/* Smooth transitions for opacity and transform */
+.transition-all {
+  transition: all 0.5s ease-out !important;
+}
+
+.transition-opacity {
+  transition: opacity 0.5s ease-out !important;
+}
+
+.duration-500 {
+  transition-duration: 0.5s !important;
+}
+
+.ease-out {
+  transition-timing-function: ease-out !important;
+}

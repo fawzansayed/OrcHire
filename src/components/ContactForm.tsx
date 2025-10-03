@@ -17,7 +17,7 @@ import {
   CheckCircle,
   ArrowRight
 } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "sonner@2.0.3";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -82,22 +82,16 @@ export function ContactForm() {
   };
 
   return (
-    <Card className="p-6 bg-background/40 backdrop-blur-xl border border-border/30 shadow-lg">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 flex items-center justify-center">
-          <MessageSquare className="w-5 h-5 text-foreground" />
-        </div>
-        <div>
-          <h3 className="text-lg font-medium text-foreground">Get in Touch</h3>
-          <p className="text-sm text-muted-foreground">Let's discuss your hiring needs</p>
-        </div>
+    <div className="h-full flex flex-col">
+      <div className="mb-6">
+        <h3 className="text-lg font-medium text-foreground mb-1">Get Started</h3>
+        <p className="text-sm text-muted-foreground">Book a demo to see OrcHire.ai in action</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Company Name */}
+      <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
+        {/* Essential fields only */}
         <div>
-          <Label htmlFor="companyName" className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-            <Building className="w-4 h-4" />
+          <Label htmlFor="companyName" className="text-sm text-foreground mb-1.5 block">
             Company Name *
           </Label>
           <Input
@@ -107,15 +101,13 @@ export function ContactForm() {
             value={formData.companyName}
             onChange={(e) => handleInputChange("companyName", e.target.value)}
             placeholder="Your company name"
-            className="bg-background/50 border-border/50 focus:border-border"
+            className="bg-background/50 border-border/50 focus:border-border h-10"
           />
         </div>
 
-        {/* Company Email */}
         <div>
-          <Label htmlFor="companyEmail" className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-            <Mail className="w-4 h-4" />
-            Company Email *
+          <Label htmlFor="companyEmail" className="text-sm text-foreground mb-1.5 block">
+            Work Email *
           </Label>
           <Input
             id="companyEmail"
@@ -123,15 +115,13 @@ export function ContactForm() {
             required
             value={formData.companyEmail}
             onChange={(e) => handleInputChange("companyEmail", e.target.value)}
-            placeholder="company@example.com"
-            className="bg-background/50 border-border/50 focus:border-border"
+            placeholder="name@company.com"
+            className="bg-background/50 border-border/50 focus:border-border h-10"
           />
         </div>
 
-        {/* Your Name */}
         <div>
-          <Label htmlFor="yourName" className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-            <User className="w-4 h-4" />
+          <Label htmlFor="yourName" className="text-sm text-foreground mb-1.5 block">
             Your Name *
           </Label>
           <Input
@@ -141,132 +131,79 @@ export function ContactForm() {
             value={formData.yourName}
             onChange={(e) => handleInputChange("yourName", e.target.value)}
             placeholder="Your full name"
-            className="bg-background/50 border-border/50 focus:border-border"
+            className="bg-background/50 border-border/50 focus:border-border h-10"
           />
         </div>
 
-        {/* Interest */}
         <div>
-          <Label htmlFor="interest" className="text-sm font-medium text-foreground mb-2">
-            What are you interested to explore? *
-          </Label>
-          <select
-            id="interest"
-            required
-            value={formData.interest}
-            onChange={(e) => handleInputChange("interest", e.target.value)}
-            className="w-full p-3 bg-background/50 border border-border/50 rounded-lg focus:border-border focus:outline-none text-sm"
-          >
-            <option value="">Select an option</option>
-            {interestOptions.map(option => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Team Size */}
-        <div>
-          <Label htmlFor="teamSize" className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-            <Users className="w-4 h-4" />
-            Team Size *
+          <Label htmlFor="teamSize" className="text-sm text-foreground mb-1.5 block">
+            Company Size *
           </Label>
           <select
             id="teamSize"
             required
             value={formData.teamSize}
             onChange={(e) => handleInputChange("teamSize", e.target.value)}
-            className="w-full p-3 bg-background/50 border border-border/50 rounded-lg focus:border-border focus:outline-none text-sm"
+            className="w-full h-10 px-3 bg-background/50 border border-border/50 rounded-md focus:border-border focus:outline-none text-sm"
           >
-            <option value="">Select team size</option>
+            <option value="">Select company size</option>
             {teamSizeOptions.map(option => (
               <option key={option} value={option}>{option}</option>
             ))}
           </select>
         </div>
 
-        {/* Message */}
-        <div>
-          <Label htmlFor="message" className="text-sm font-medium text-foreground mb-2">
-            Additional Message (Optional)
-          </Label>
-          <Textarea
-            id="message"
-            value={formData.message}
-            onChange={(e) => handleInputChange("message", e.target.value)}
-            placeholder="Tell us more about your hiring challenges or specific requirements..."
-            className="bg-background/50 border-border/50 focus:border-border min-h-[100px]"
-          />
-        </div>
-
-        {/* Consent Checkbox */}
-        <div className="flex items-start gap-3 p-4 bg-muted/20 rounded-lg border border-border/20">
+        {/* Simple consent */}
+        <div className="flex items-start gap-3 mt-2">
           <Checkbox
             id="consent"
             checked={formData.consent}
             //@ts-ignore
             onCheckedChange={(checked) => handleInputChange("consent", checked as boolean)}
-            className="mt-1"
+            className="mt-0.5"
           />
-          <div className="flex-1">
-            <Label 
-              htmlFor="consent" 
-              className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
-            >
-              I consent to receive calls, emails, and other marketing materials from CoHyre.ai. 
-              I understand I can unsubscribe at any time. By submitting this form, I agree to 
-              CoHyre.ai's Privacy Policy and Terms of Service.
-            </Label>
-          </div>
+          <Label 
+            htmlFor="consent" 
+            className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
+          >
+            I agree to receive product updates and marketing communications from OrcHire.ai
+          </Label>
         </div>
 
         {/* Submit Button */}
         <motion.div
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+          className="mt-6"
         >
-          <Button
-            type="submit"
-            disabled={isSubmitting || !formData.consent}
-            className="w-full bg-foreground text-background hover:bg-foreground/90 shadow-lg py-3 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
-                Submitting...
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                Send Message
-                <ArrowRight className="w-4 h-4" />
-              </div>
-            )}
-          </Button>
+<div className="w-full p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-xl shadow-lg">
+            <Button
+              type="submit"
+              disabled={isSubmitting || !formData.consent}
+              className="w-full bg-background/80 backdrop-blur-xl text-foreground hover:bg-background/90 hover:text-[#0C8EFF] h-11 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-0 rounded-xl"
+            >
+              {isSubmitting ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-foreground/30 border-t-foreground rounded-full animate-spin" />
+                  Booking Demo...
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  Book Demo
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              )}
+            </Button>
+          </div>
         </motion.div>
       </form>
 
-      {/* Contact Info */}
-      <div className="mt-6 pt-6 border-t border-border/30">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-muted/30 flex items-center justify-center">
-              <Mail className="w-4 h-4 text-foreground/80" />
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground">Email</p>
-              <p className="text-sm font-medium text-foreground">sales@cohyre.ai</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-muted/30 flex items-center justify-center">
-              <CheckCircle className="w-4 h-4 text-green-500" />
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground">Response Time</p>
-              <p className="text-sm font-medium text-foreground">Within 24 hours</p>
-            </div>
-          </div>
-        </div>
+      {/* Simple contact info */}
+      <div className="mt-6 pt-4 border-t border-border/20 text-center">
+        <p className="text-xs text-muted-foreground">
+          Questions? Contact us at <span className="font-medium text-foreground">sales@orchire.ai</span>
+        </p>
       </div>
-    </Card>
+    </div>
   );
 }

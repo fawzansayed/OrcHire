@@ -27,7 +27,7 @@ export function AgentFlowSection() {
       {
         icon: Cpu,
         title: "AI-Powered Intelligence",
-        description: "Advanced machine learning algorithms that understand context, intent, and quality",
+        description: "Advanced ML algorithms that understand context, intent, and quality",
         metric: "11 Specialized AI Agents",
         gradient: "from-[#0C8EFF] to-[#9F62ED]"
       },

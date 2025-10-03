@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { FileText, ChevronRight, Mail, Scale, UserCheck, CreditCard, Shield, AlertTriangle, Users, Building, Gavel, UserX, Briefcase, Zap } from "lucide-react";
+import { FileText, ChevronRight, Mail, Users, UserCheck, Shield, Scale, Gavel, Building2, CreditCard } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 
 export function TermsPage() {
@@ -16,52 +16,25 @@ export function TermsPage() {
 
   const termsSections = [
     {
-      id: "eligibility",
-      title: "Eligibility",
-      icon: UserCheck,
+      id: "acceptance-terms",
+      title: "Acceptance of Terms",
+      icon: FileText,
       content: {
-        intro: "You must be at least 18 years old and authorized to act on behalf of your company.",
+        intro: "By accessing and using OrcHire.ai, you agree to be bound by these Terms of Service and all applicable laws and regulations.",
         items: []
       }
     },
     {
-      id: "services-provided",
-      title: "Services Provided", 
-      icon: Briefcase,
-      content: {
-        intro: "OrcHire.ai provides AI-driven hiring solutions, including but not limited to:",
-        items: [
-          "AI candidate search & matching",
-          "Voice AI interviews",
-          "Candidate engagement automation", 
-          "Offer and pipeline management"
-        ]
-      }
-    },
-    {
-      id: "user-responsibilities",
-      title: "User Responsibilities",
+      id: "platform-usage",
+      title: "Platform Usage",
       icon: Users,
       content: {
-        intro: "As a user of our platform, you agree to:",
+        intro: "OrcHire.ai is designed for legitimate recruitment purposes:",
         items: [
-          "Provide accurate information during account setup",
-          "Use the platform only for lawful hiring and HR purposes",
-          "Ensure compliance with labor and employment laws",
-          "Do not misuse the platform (e.g., upload unlawful, discriminatory, or harmful content)"
-        ]
-      }
-    },
-    {
-      id: "subscription-payments",
-      title: "Subscription & Payments",
-      icon: CreditCard,
-      content: {
-        intro: "Our payment and subscription terms:",
-        items: [
-          "Services are provided on a subscription model (monthly/annual)",
-          "Fees are non-refundable unless otherwise specified",
-          "Late payments may result in suspension of services"
+          "Users must be 18+ years old and authorized to enter binding agreements",
+          "Accounts are non-transferable and for business use only",
+          "Users must provide accurate information and maintain account security",
+          "Prohibited uses include spam, harassment, or illegal activities"
         ]
       }
     },
@@ -70,23 +43,61 @@ export function TermsPage() {
       title: "Intellectual Property",
       icon: Shield,
       content: {
-        intro: "Ownership and licensing terms:",
+        intro: "Rights and ownership of platform content:",
         items: [
-          {
-            title: "OrcHire.ai IP",
-            description: "All AI models, algorithms, and platform IP belong to OrcHire.ai"
-          },
-          {
-            title: "User Data Rights",
-            description: "Users retain rights to their own data but grant OrcHire.ai a license to process it"
-          }
+          "OrcHire.ai retains all rights to platform technology and algorithms",
+          "Customer data remains owned by the customer",
+          "Users grant OrcHire.ai limited rights to process data for service delivery",
+          "Third-party integrations subject to respective terms"
+        ]
+      }
+    },
+    {
+      id: "data-privacy",
+      title: "Data Privacy & Protection",
+      icon: UserCheck,
+      content: {
+        intro: "Our commitment to data privacy:",
+        items: [
+          "GDPR and CCPA compliant data processing",
+          "Data used solely for recruitment purposes",
+          "Candidates can request data deletion at any time",
+          "Regular security audits and compliance reviews"
+        ]
+      }
+    },
+    {
+      id: "service-availability",
+      title: "Service Availability",
+      icon: Building2,
+      content: {
+        intro: "Service level commitments and limitations:",
+        items: [
+          "99.9% uptime SLA for enterprise customers",
+          "Scheduled maintenance with advance notice",
+          "Force majeure exceptions for outages beyond our control",
+          "Backup and disaster recovery procedures in place"
+        ]
+      }
+    },
+    {
+      id: "billing-payments",
+      title: "Billing & Payments",
+      icon: CreditCard,
+      content: {
+        intro: "Payment terms and billing policies:",
+        items: [
+          "Subscription fees billed in advance",
+          "30-day payment terms for enterprise customers",
+          "Automatic renewal unless cancelled with 30 days notice",
+          "Refunds subject to service level agreement terms"
         ]
       }
     },
     {
       id: "termination",
       title: "Termination",
-      icon: UserX,
+      icon: Scale,
       content: {
         intro: "Account termination conditions:",
         items: [
@@ -123,31 +134,14 @@ export function TermsPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 px-6 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-          <motion.div
-            className="absolute top-1/4 right-1/3 w-96 h-96 bg-gradient-to-br from-[#9F62ED]/8 via-[#0C8EFF]/4 to-[#9F62ED]/6 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        </div>
-
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <motion.div
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#9F62ED]/10 to-[#0C8EFF]/10 backdrop-blur-xl border-2 border-[#9F62ED]/30 px-6 py-3 mb-8"
-            style={{ clipPath: 'polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)' }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#9F62ED]/10 to-[#0C8EFF]/10 backdrop-blur-xl rounded-full px-6 py-3 border border-[#9F62ED]/20 mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <FileText className="w-4 h-4 text-[#9F62ED]" />
+            <FileText className="w-4 h-4 text-muted-foreground" />
             <span className="text-sm font-medium bg-gradient-to-r from-[#9F62ED] to-[#0C8EFF] bg-clip-text text-transparent">
               Legal Terms & Conditions
             </span>
@@ -168,7 +162,8 @@ export function TermsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Welcome to OrcHire.ai. By accessing or using our platform, you agree to these Terms of Service.
+            These Terms of Service govern your use of OrcHire.ai's recruitment platform and services. 
+            Please read carefully before using our platform.
           </motion.p>
 
           <motion.p 
@@ -202,15 +197,16 @@ export function TermsPage() {
                     onOpenChange={() => toggleSection(section.id)}
                   >
                     <CollapsibleTrigger className="w-full">
-                      <div className="group bg-card/50 backdrop-blur-xl border-2 border-border/50 p-6 hover:border-[#9F62ED]/50 transition-all duration-300 cursor-pointer relative overflow-hidden"
-                           style={{ clipPath: 'polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%)' }}>
-                        <div className="flex items-center justify-between">
+                      <div className="group bg-card/50 backdrop-blur-xl rounded-2xl border border-border/50 p-6 hover:border-[#0C8EFF]/30 hover:shadow-lg transition-all duration-300 cursor-pointer relative overflow-hidden">
+                        {/* Subtle hover sheen effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                        
+                        <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-gradient-to-br from-[#9F62ED]/20 to-[#0C8EFF]/20 flex items-center justify-center relative"
-                                 style={{ clipPath: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)' }}>
-                              <Icon className="w-6 h-6 text-[#9F62ED]" />
+                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#9F62ED]/20 to-[#0C8EFF]/20 flex items-center justify-center">
+                              <Icon className="w-6 h-6 text-muted-foreground group-hover:text-[#0C8EFF] transition-colors duration-300" />
                             </div>
-                            <h2 className="text-xl font-semibold text-left">{section.title}</h2>
+                            <h2 className="text-xl font-semibold text-left text-muted-foreground">{section.title}</h2>
                           </div>
                           <motion.div
                             animate={{
@@ -218,7 +214,7 @@ export function TermsPage() {
                             }}
                             transition={{ duration: 0.2 }}
                           >
-                            <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                            <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-muted-foreground transition-colors" />
                           </motion.div>
                         </div>
                       </div>
@@ -230,32 +226,36 @@ export function TermsPage() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="mt-4 bg-card/30 backdrop-blur-xl border-2 border-border/30 p-6 relative"
-                        style={{ clipPath: 'polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%)' }}
+                        className="mt-4 bg-card/30 backdrop-blur-xl rounded-2xl border border-border/30 p-6 relative overflow-hidden"
                       >
-                        {section.content.intro && (
-                          <p className="text-muted-foreground mb-4">{section.content.intro}</p>
-                        )}
+                        {/* Subtle background gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#9F62ED]/[0.02] via-transparent to-[#0C8EFF]/[0.02]" />
                         
-                        {section.content.items.length > 0 && (
-                          <div className="space-y-3">
-                            {section.content.items.map((item, itemIndex) => (
-                              <div key={itemIndex} className="flex items-start gap-3">
-                                <div className="w-2 h-2 bg-gradient-to-r from-[#9F62ED] to-[#0C8EFF] mt-2 flex-shrink-0 transform rotate-45" />
-                                <div>
-                                  {typeof item === 'string' ? (
-                                    <p className="text-muted-foreground">{item}</p>
-                                  ) : (
-                                    <>
-                                      <h4 className="font-medium text-foreground mb-1">{item.title}</h4>
-                                      <p className="text-muted-foreground text-sm">{item.description}</p>
-                                    </>
-                                  )}
+                        <div className="relative z-10">
+                          {section.content.intro && (
+                            <p className="text-muted-foreground mb-4">{section.content.intro}</p>
+                          )}
+                          
+                          {section.content.items.length > 0 && (
+                            <div className="space-y-3">
+                              {section.content.items.map((item, itemIndex) => (
+                                <div key={itemIndex} className="flex items-start gap-3">
+                                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#9F62ED] to-[#0C8EFF] mt-2 flex-shrink-0" />
+                                  <div>
+                                    {typeof item === 'string' ? (
+                                      <p className="text-muted-foreground leading-relaxed">{item}</p>
+                                    ) : (
+                                      <>
+                                        <h4 className="font-medium text-muted-foreground mb-1">{item.title}</h4>
+                                        <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                                      </>
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </motion.div>
                     </CollapsibleContent>
                   </Collapsible>
@@ -266,30 +266,33 @@ export function TermsPage() {
 
           {/* Contact Section */}
           <motion.div
-            className="mt-12 bg-card/50 backdrop-blur-xl border-2 border-border/50 p-8 text-center relative"
-            style={{ clipPath: 'polygon(30px 0%, 100% 0%, calc(100% - 30px) 100%, 0% 100%)' }}
+            className="mt-12 bg-card/50 backdrop-blur-xl rounded-2xl border border-border/50 p-8 text-center relative overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-[#9F62ED]/20 to-[#0C8EFF]/20 flex items-center justify-center mx-auto mb-4"
-                 style={{ clipPath: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)' }}>
-              <Mail className="w-8 h-8 text-[#9F62ED]" />
+            {/* Background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#9F62ED]/[0.03] via-transparent to-[#0C8EFF]/[0.03]" />
+            
+            <div className="relative z-10">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#9F62ED]/20 to-[#0C8EFF]/20 flex items-center justify-center mx-auto mb-4 group">
+                <Mail className="w-8 h-8 text-muted-foreground group-hover:text-[#0C8EFF] transition-colors duration-300" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-4 text-muted-foreground">Questions About Our Terms?</h3>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                If you have questions about these Terms of Service or need clarification on any provisions, 
+                our legal team is here to help.
+              </p>
+              <motion.a
+                href="mailto:legal@orchire.ai"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#9F62ED] to-[#0C8EFF] text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Mail className="w-4 h-4" />
+                legal@orchire.ai
+              </motion.a>
             </div>
-            <h3 className="text-2xl font-semibold mb-4">Questions About Our Terms?</h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              If you have any questions about these Terms of Service or need clarification on any policies, 
-              our legal team is here to help.
-            </p>
-            <motion.a
-              href="mailto:legal@orchire.ai"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#9F62ED] to-[#0C8EFF] text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Mail className="w-4 h-4" />
-              legal@orchire.ai
-            </motion.a>
           </motion.div>
         </div>
       </section>

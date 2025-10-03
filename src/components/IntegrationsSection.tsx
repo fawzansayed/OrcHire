@@ -165,7 +165,7 @@ export function IntegrationsSection() {
         {/* Integration Description */}
         <div className="text-center mt-8 mb-20 max-w-3xl mx-auto">
           <p className="text-xl text-muted-foreground leading-relaxed">
-            OrcHire.ai integrates seamlessly with the above tools and workflows — 
+            OrcHire.ai integrates seamlessly with the above tools and workflows - 
             and many more. No disruption, just enhanced capabilities across your entire hiring ecosystem.
           </p>
         </div>

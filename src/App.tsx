@@ -36,7 +36,7 @@ const PressPage = lazy(() => import("./components/PressPage").then((m) => ({ def
 const SupportPage = lazy(() => import("./components/SupportPage").then((m) => ({ default: m.SupportPage })))
 
 const CareersPage = lazy(() => import("./components/CareersPage").then((m) => ({ default: m.CareersPage })))
-const ContactForm = lazy(() => import("./components/ContactForm").then((m) => ({ default: m.ContactForm })))
+const ContactForm = lazy(() => import("./components/ContactModal").then((m) => ({ default: m.ContactModal })))
 
 
 const TermsPage = lazy(() => import("./components/TermsPage").then((m) => ({ default: m.TermsPage })))
