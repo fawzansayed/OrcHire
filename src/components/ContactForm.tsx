@@ -82,13 +82,13 @@ export function ContactForm() {
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="flex flex-col">
       <div className="mb-6">
         <h3 className="text-lg font-medium text-foreground mb-1">Get Started</h3>
         <p className="text-sm text-muted-foreground">Book a demo to see OrcHire.ai in action</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         {/* Essential fields only */}
         <div>
           <Label htmlFor="companyName" className="text-sm text-foreground mb-1.5 block">
@@ -176,11 +176,11 @@ export function ContactForm() {
           whileTap={{ scale: 0.99 }}
           className="mt-6"
         >
-<div className="w-full p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-xl shadow-lg">
+<div className="w-full p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-full shadow-lg">
             <Button
               type="submit"
               disabled={isSubmitting || !formData.consent}
-              className="w-full bg-background/80 backdrop-blur-xl text-foreground hover:bg-background/90 hover:text-[#0C8EFF] h-11 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-0 rounded-xl"
+              className="w-full bg-background/80 backdrop-blur-xl text-foreground hover:bg-background/90 hover:text-[#0C8EFF] h-11 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-0 rounded-full"
             >
               {isSubmitting ? (
                 <div className="flex items-center gap-2">
@@ -189,7 +189,7 @@ export function ContactForm() {
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  Book Demo
+                  Book a Demo
                   <ArrowRight className="w-4 h-4" />
                 </div>
               )}

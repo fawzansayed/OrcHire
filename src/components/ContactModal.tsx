@@ -1,14 +1,16 @@
 import * as React from "react";
 import { ContactForm } from "./ContactForm";
 import { motion } from "motion/react";
+import { ImageWithFallback } from './figma/ImageWithFallback';
+import platformImage from '/PlatformImage.png';
 
 export function ContactModal() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="flex min-h-screen">
+    <div className="h-screen bg-background overflow-hidden">
+      <div className="flex h-full">
         {/* Left Side - 3D Image Display */}
         <motion.div 
-          className="w-[60%] relative overflow-hidden bg-gradient-to-br from-background via-muted/20 to-background flex items-center justify-center p-8"
+          className="w-[55%] relative overflow-hidden bg-gradient-to-br from-background via-muted/20 to-background flex items-center justify-center p-8"
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -22,7 +24,7 @@ export function ContactModal() {
 
           {/* Platform Diagram Container */}
           <motion.div 
-            className="relative w-full max-w-3xl h-96"
+            className="relative w-full max-w-3xl h-[60vh]"
             initial={{ scale: 0.8, rotateY: -20 }}
             animate={{ scale: 1, rotateY: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -46,18 +48,18 @@ export function ContactModal() {
               }}
             >
               <div 
-                className="w-full h-full rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10"
+                className="w-full h-full rounded-2xl overflow-hidden bg-white backdrop-blur-sm border border-border/20"
                 style={{
                   transform: "translateZ(20px)",
                   boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.25)"
                 }}
               >
-                <img 
-                  src="/PlatformImage.png"
+                <ImageWithFallback 
+                  src={platformImage}
                   alt="Job To Candidate Matching Engine - OrcHire.ai Platform Diagram"
                   className="w-full h-full object-contain p-4"
                   style={{
-                    filter: "brightness(1.05) contrast(1.1) saturate(1.05)",
+                    filter: "contrast(1.1) saturate(1.05)",
                   }}
                 />
                 
@@ -100,14 +102,16 @@ export function ContactModal() {
 
         {/* Right Side - Contact Form */}
         <motion.div 
-          className="w-[40%] bg-card/80 backdrop-blur-xl border-l border-border/30 relative flex flex-col min-h-screen"
+          className="w-[45%] bg-card/80 backdrop-blur-xl border-l border-border/30 relative flex flex-col h-full"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
           {/* Form Container */}
-          <div className="flex-1 p-8 flex flex-col justify-center">
-            <ContactForm />
+          <div className="flex-1 p-8 flex items-center justify-center overflow-y-auto">
+            <div className="w-full max-w-md">
+              <ContactForm />
+            </div>
           </div>
         </motion.div>
       </div>

@@ -63,7 +63,7 @@ export function SecurityComplianceSection() {
     {
       icon: User,
       title: "Role-Based Access Control",
-      description: "Granular permissions and multi-factor authentication for secure access."
+      description: "Granular permissions and multi-factor auth for secure access."
     },
     {
       icon: Globe,
