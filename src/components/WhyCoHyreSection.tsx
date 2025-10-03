@@ -12,25 +12,32 @@ import {
   FileCheck,
   Users,
   Video,
-  Brain,
-  Sparkles,
-  Play
+  Brain
 } from "lucide-react"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip"
 
 interface WhyCoHyreSectionProps {
   onNavigate?: (page: string) => void
 }
 
 export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
-  const [hoveredAgent, setHoveredAgent] = useState<number | null>(null)
+  const [animationStage, setAnimationStage] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
+        if (entry.isIntersecting && animationStage === 0) {
+          // Start animation sequence
+          setTimeout(() => setAnimationStage(1), 500)   // Show header
+          setTimeout(() => setAnimationStage(2), 1000)  // Show orbs
+          setTimeout(() => setAnimationStage(3), 3000)  // Start fusion
+          setTimeout(() => setAnimationStage(4), 4500)  // Complete fusion + show text
         }
       },
       { threshold: 0.3 }
@@ -41,274 +48,192 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
     }
 
     return () => observer.disconnect()
-  }, [])
+  }, [animationStage])
 
-  // 10 AI Features arranged in 2 staggered layers
-  const aiFeatures = [
-    // Inner Ring (5 items)
-    {
-      id: 1,
-      icon: Search,
-      title: "AI Talent Discovery",
-      description: "400M+ Profiles Surfaced By Natural Language Prompts",
-      layer: "inner",
-      angle: 0 // 12 o'clock
-    },
-    {
-      id: 2,
-      icon: BarChart3,
-      title: "AI Stack Ranking", 
-      description: "Instant Top 10 Shortlist, Bias-Free",
-      layer: "inner",
-      angle: 72 // 2:24 o'clock
-    },
-    {
-      id: 3,
-      icon: Settings,
-      title: "Workflow Integrations",
-      description: "End - End ATS, HRMS, Job Boards, Slack, Email And Workflow",
-      layer: "inner", 
-      angle: 144 // 4:48 o'clock
-    },
-    {
-      id: 4,
-      icon: FileCheck,
-      title: "Offer Automation",
-      description: "Send, Track, Close Seamlessly",
-      layer: "inner",
-      angle: 216 // 7:12 o'clock
-    },
-    {
-      id: 5,
-      icon: Video,
-      title: "Shadow Interviews",
-      description: "Flags Anomalies, Red Flags In Real-Time",
-      layer: "inner",
-      angle: 288 // 9:36 o'clock
-    },
-    // Outer Ring (5 items) - Staggered positions
-    {
-      id: 6,
-      icon: Mail,
-      title: "Intelligent Outreach",
-      description: "Automated WhatsApp, Email, Multi-Channel Sequencing",
-      layer: "outer",
-      angle: 36 // 1:12 o'clock (staggered)
-    },
-    {
-      id: 7,
-      icon: Target,
-      title: "Contextual Matching",
-      description: "No Resumes, New Benchmark For Talent Fit",
-      layer: "outer",
-      angle: 108 // 3:36 o'clock (staggered)
-    },
-    {
-      id: 8,
-      icon: Mic,
-      title: "Voice AI Screening",
-      description: "24/7 Recruiter Calls, Transcripts & Scoring",
-      layer: "outer",
-      angle: 180 // 6 o'clock (staggered)
-    },
-    {
-      id: 9,
-      icon: PieChart,
-      title: "Insights Dashboard", 
-      description: "Fitment Scoring, Skills-Gap Analytics, Candidate Comparisons",
-      layer: "outer",
-      angle: 252 // 8:24 o'clock (staggered)
-    },
-    {
-      id: 10,
-      icon: Users,
-      title: "Candidate Agents",
-      description: "No-Show Follow-Ups, Referral Checks, Auto-Scheduling",
-      layer: "outer",
-      angle: 324 // 10:48 o'clock (staggered)
-    }
+  const capabilities = [
+    { icon: Search, name: "Discovery", description: "AI-powered talent discovery across 400M+ profiles using advanced search algorithms" },
+    { icon: BarChart3, name: "Ranking", description: "Intelligent candidate ranking based on skills, experience, and job fit analysis" },
+    { icon: Settings, name: "Integration", description: "Seamless integration with existing HR tools and ATS platforms" },
+    { icon: FileCheck, name: "Automation", description: "Complete automation of repetitive hiring tasks and workflow management" },
+    { icon: Video, name: "Interviews", description: "AI-conducted video interviews with natural language processing" },
+    { icon: Mail, name: "Outreach", description: "Personalized candidate outreach and communication at scale" },
+    { icon: Target, name: "Matching", description: "Precise job-candidate matching using machine learning algorithms" },
+    { icon: Mic, name: "Screening", description: "Automated phone and voice screening with intelligent conversation flow" },
+    { icon: PieChart, name: "Insights", description: "Advanced analytics and hiring insights for data-driven decisions" },
+    { icon: Users, name: "Agents", description: "Multi-agent AI system coordinating complex hiring workflows" }
   ]
-
-  // Calculate position for each feature
-  const getPosition = (feature: typeof aiFeatures[0]) => {
-    const radius = feature.layer === "inner" ? 200 : 260  // Increased radii for better spacing
-    const angleRad = (feature.angle * Math.PI) / 180
-    const x = Math.cos(angleRad - Math.PI / 2) * radius
-    const y = Math.sin(angleRad - Math.PI / 2) * radius
-    return { x, y }
-  }
 
   return (
     <>
       {/* Section Separator Line */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-30"></div>
       
-      <section ref={sectionRef} className="relative py-16 px-6 overflow-hidden min-h-screen flex items-center">
-        {/* Background */}
-        <div className="absolute inset-0" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Header Section */}
-          <div className="text-center mb-2">
-            <div className="inline-block p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-full shadow-lg mb-6">
-              <div className="flex items-center bg-background/80 backdrop-blur-xl text-foreground px-4 py-2 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-medium border-0 group">
-                <Play className="w-4 h-4 text-foreground transition-colors duration-300 group-hover:text-[#0C8EFF] mr-2 md:mr-3" strokeWidth={1.25} />
-                Autonomous Talent Pipeline
-              </div>
-            </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              AI-Powered Hiring Flow
-            </h3>
+      <section ref={sectionRef} className="relative pt-24 pb-32 px-6 overflow-hidden min-h-screen flex flex-col justify-center">
+        {/* Subtle background overlay */}
+        <div className="absolute inset-0 bg-background/40" />
+        
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
+          
+          {/* Header */}
+          <div className={`text-center mb-4 transition-all duration-800 ${
+            animationStage >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="text-foreground">Meet </span>
+              <span className="bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED] bg-clip-text text-transparent">
+                Aria Fusion
+              </span>
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Experience the future of hiring with our intelligent pipeline that
-              transforms talent acquisition from discovery to placement
+              Watch as 10 AI capabilities merge into one powerful intelligence
             </p>
           </div>
 
-          {/* Main Content Area - Side by Side Layout */}
-          <div className="flex items-center justify-center gap-32 min-h-[600px] -mt-16">
-            {/* Circular Feature Display - Left Side */}
-            <div className="relative flex items-center justify-center" style={{ width: '600px', height: '600px' }}>
-              {/* Aria Fusion - Central Core */}
-              <div
-                className={`relative z-20 transition-all duration-600 ${
-                  isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-                }`}
-              >
-                <div 
-                  className="rounded-full bg-gradient-to-br from-[#0C8EFF]/15 via-[#9F62ED]/10 to-[#0C8EFF]/15 backdrop-blur-xl border border-[#0C8EFF]/30 shadow-2xl shadow-[#0C8EFF]/25 flex-shrink-0"
-                  style={{ 
-                    width: '208px', 
-                    height: '208px', 
-                    aspectRatio: '1/1',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center'
+          {/* Animation Container - Compact size */}
+          <div className="relative mx-auto mb-4" style={{ width: '400px', height: '400px' }}>
+            
+            {/* Individual Capability Orbs */}
+            {capabilities.map((capability, index) => {
+              const Icon = capability.icon
+              
+              // Calculate positions for a compact circle
+              const angle = (index * 36) - 90 // 360/10 = 36 degrees, start from top
+              const centerX = 200 // Half of container width
+              const centerY = 200 // Half of container height
+              const radius = 140  // Much smaller radius for tight formation
+              
+              const x = centerX + Math.cos(angle * Math.PI / 180) * radius
+              const y = centerY + Math.sin(angle * Math.PI / 180) * radius
+              
+              // Determine current position based on animation stage
+              let currentX = centerX
+              let currentY = centerY
+              let opacity = 0
+              let scale = 0
+              
+              if (animationStage >= 2 && animationStage < 3) {
+                // Show in wide circle
+                currentX = x
+                currentY = y
+                opacity = 1
+                scale = 1
+              } else if (animationStage >= 3) {
+                // Move back to center and fade
+                currentX = centerX
+                currentY = centerY
+                opacity = 0
+                scale = 0
+              }
+              
+              return (
+                <div
+                  key={capability.name}
+                  className="absolute w-16 h-16 rounded-full flex items-center justify-center transition-all duration-1500 ease-out z-10"
+                  style={{
+                    left: `${currentX - 32}px`, // Subtract half width to center
+                    top: `${currentY - 32}px`,  // Subtract half height to center
+                    opacity,
+                    transform: `scale(${scale})`,
+                    transitionDelay: animationStage === 2 ? `${index * 100}ms` : '0ms',
+                    background: "radial-gradient(circle, rgba(12, 142, 255, 0.15) 0%, rgba(12, 142, 255, 0.08) 50%, transparent 100%)",
+                    backdropFilter: "blur(8px)",
+                    border: "1px solid rgba(12, 142, 255, 0.2)",
+                    boxShadow: "0 4px 20px rgba(12, 142, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
                   }}
                 >
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0C8EFF] to-[#9F62ED] mb-3 flex items-center justify-center shadow-lg flex-shrink-0">
-                    <Brain className="w-8 h-8 text-white" />
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 bg-[#0C8EFF]/10 rounded-full blur-sm opacity-60 animate-pulse" />
+                  <Icon className="w-8 h-8 text-[#0C8EFF] relative z-10" strokeWidth={1.5} />
+                </div>
+              )
+            })}
+
+            {/* Central Aria Fusion Orb */}
+            <div 
+              className={`absolute transition-all duration-1000 ease-out ${
+                animationStage >= 3 ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+              }`}
+              style={{
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)'
+              }}
+            >
+              {/* Outer glow effects */}
+              <div className="absolute w-80 h-80 rounded-full bg-[#0C8EFF]/15 blur-3xl animate-pulse-slow" 
+                   style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />
+              <div className="absolute w-60 h-60 rounded-full bg-[#0C8EFF]/20 blur-2xl animate-pulse-slow-delayed" 
+                   style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />
+              
+              {/* Main fusion orb */}
+              <div className="relative w-56 h-56 rounded-full bg-card/90 backdrop-blur-xl border border-border/30 shadow-2xl flex items-center justify-center">
+                {/* Inner gradient background */}
+                <div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#0C8EFF]/5 via-[#9F62ED]/5 to-[#0C8EFF]/5" />
+                
+                {/* Content */}
+                <div className="relative z-10 text-center px-6 py-4">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-accent/50 backdrop-blur-sm border border-[#0C8EFF]/20 rounded-full flex items-center justify-center relative">
+                    <div className="absolute inset-1 bg-gradient-to-br from-[#0C8EFF]/10 to-[#9F62ED]/10 rounded-full" />
+                    <Brain className="w-8 h-8 text-[#0C8EFF] relative z-10" strokeWidth={1.5} />
                   </div>
-                  <div className="text-center flex-shrink-0">
-                    <div className="text-lg font-bold bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] bg-clip-text text-transparent">
-                      aria fusion
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      Multi-Agent AI Core
-                    </div>
+                  <div className="text-2xl font-bold mb-2 bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED] bg-clip-text text-transparent">
+                    Aria Fusion
                   </div>
-                  
-                  {/* Sparkles around Aria */}
-                  <div className="absolute inset-0">
-                    <Sparkles className="absolute w-4 h-4 text-[#0C8EFF] top-3 right-8 animate-pulse" />
-                    <Sparkles 
-                      className="absolute w-3 h-3 text-[#9F62ED] bottom-6 left-6 animate-pulse" 
-                      style={{animationDelay: '300ms'}} 
+                  <div className="text-sm text-muted-foreground">Multi-Agent AI</div>
+                </div>
+                
+                {/* Floating particles */}
+                <div className="absolute inset-0">
+                  {[...Array(6)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1.5 h-1.5 rounded-full bg-[#0C8EFF]/40 animate-particle-float"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                        animationDelay: `${i * 0.8}s`
+                      }}
                     />
-                    <Sparkles 
-                      className="absolute w-5 h-5 text-[#0C8EFF] top-10 left-3 animate-pulse" 
-                      style={{animationDelay: '700ms'}} 
-                    />
-                  </div>
+                  ))}
                 </div>
               </div>
-
-              {/* AI Features in Circular Orbits */}
-              {aiFeatures.map((feature, index) => {
-                const Icon = feature.icon
-                const position = getPosition(feature)
-                const isHovered = hoveredAgent === feature.id
-
-                return (
-                  <div
-                    key={feature.id}
-                    className={`absolute transition-all duration-500 ${
-                      isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-                    }`}
-                    style={{
-                      left: '50%',
-                      top: '50%',
-                      transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px))`,
-                      transitionDelay: `${index * 0.1}s`
-                    }}
-                    onMouseEnter={() => setHoveredAgent(feature.id)}
-                    onMouseLeave={() => setHoveredAgent(null)}
-                  >
-                    {/* Feature Circle */}
-                    <div
-                      className={`relative w-16 h-16 rounded-full bg-gradient-to-br from-[#0C8EFF]/20 via-[#9F62ED]/15 to-[#0C8EFF]/20 backdrop-blur-xl border border-[#0C8EFF]/30 flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 flex-shrink-0 ${
-                        isHovered 
-                          ? 'scale-125 shadow-2xl shadow-[#0C8EFF]/40 border-[#0C8EFF]/60 bg-gradient-to-br from-[#0C8EFF]/30 via-[#9F62ED]/25 to-[#0C8EFF]/30' 
-                          : 'hover:scale-110 hover:shadow-xl hover:border-[#0C8EFF]/40'
-                      }`}
-                      style={{ aspectRatio: '1/1' }}
-                    >
-                      <Icon 
-                        className={`w-6 h-6 transition-colors duration-300 ${
-                          isHovered ? 'text-[#0C8EFF]' : 'text-foreground'
-                        }`} 
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                  </div>
-                )
-              })}
             </div>
+          </div>
 
-            {/* Feature Description Area - Right Side */}
-            <div className="w-96 flex-shrink-0">
-              <div 
-                className={`min-h-[300px] bg-gradient-to-br from-[#0C8EFF]/10 via-[#9F62ED]/8 to-[#0C8EFF]/10 backdrop-blur-xl rounded-2xl p-8 border border-[#0C8EFF]/20 shadow-lg transition-all duration-300 ${
-                  hoveredAgent ? 'scale-105 shadow-xl shadow-[#0C8EFF]/20' : ''
-                }`}
-              >
-                {hoveredAgent ? (
-                  <div key={hoveredAgent} className="flex flex-col gap-6 animate-fade-in">
-                    {(() => {
-                      const feature = aiFeatures.find(f => f.id === hoveredAgent);
-                      const Icon = feature?.icon;
-                      return (
-                        <>
-                          <div className="flex items-center gap-4">
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0C8EFF]/20 via-[#9F62ED]/15 to-[#0C8EFF]/20 backdrop-blur-xl border border-[#0C8EFF]/30 flex items-center justify-center">
-                              {Icon && <Icon className="w-8 h-8 text-[#0C8EFF]" strokeWidth={1.5} />}
-                            </div>
-                            <div className="flex-1">
-                              <h4 className="text-2xl font-semibold text-foreground">
-                                {feature?.title}
-                              </h4>
-                            </div>
-                          </div>
-                          <div>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                              {feature?.description}
-                            </p>
-                          </div>
-                        </>
-                      );
-                    })()}
+          {/* Capabilities List */}
+          <div className={`-mt-6 mb-16 transition-all duration-800 ${
+            animationStage >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="bg-card/40 backdrop-blur-xl border border-border/20 rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="text-sm text-muted-foreground mb-4">Powered by 10 AI Capabilities</div>
+                <TooltipProvider>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {capabilities.map((cap, index) => (
+                      <Tooltip key={cap.name} delayDuration={200}>
+                        <TooltipTrigger asChild>
+                          <span className={`px-3 py-1.5 bg-card/50 backdrop-blur-sm border border-border/20 rounded-full text-sm text-foreground hover:bg-[#0C8EFF]/10 hover:border-[#0C8EFF]/30 transition-all duration-200 cursor-help ${
+                            animationStage >= 4 ? 'animate-fade-in' : 'opacity-0'
+                          }`}
+                          style={{ animationDelay: `${index * 50}ms` }}>
+                            {cap.name}
+                          </span>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="max-w-xs">
+                          <p className="text-sm">{cap.description}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
                   </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-center h-full text-center">
-                    <div>
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0C8EFF]/20 via-[#9F62ED]/15 to-[#0C8EFF]/20 backdrop-blur-xl border border-[#0C8EFF]/30 flex items-center justify-center mx-auto mb-6">
-                        <Brain className="w-8 h-8 text-[#0C8EFF]" strokeWidth={1.5} />
-                      </div>
-                      <h4 className="text-xl font-semibold text-foreground mb-4">
-                        Explore AI Capabilities
-                      </h4>
-                      <p className="text-muted-foreground leading-relaxed">
-                        Hover over any feature in the circle to discover how our AI-powered platform transforms every aspect of your hiring process.
-                      </p>
-                    </div>
-                  </div>
-                )}
+                </TooltipProvider>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Separator Line */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-30"></div>
     </>
   )
 }
