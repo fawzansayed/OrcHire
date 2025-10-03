@@ -164,7 +164,7 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
                    style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />
               
               {/* Double-circle Aria Fusion orb like reference image */}
-              <div className="relative w-64 h-64 rounded-full flex items-center justify-center">
+              <div className="relative rounded-full flex items-center justify-center" style={{ width: '240px', height: '240px' }}>
                 {/* Outer ring with glassy effect */}
                 <div 
                   className="absolute inset-0 rounded-full"
@@ -176,25 +176,39 @@ export function WhyCoHyreSection({ onNavigate }: WhyCoHyreSectionProps) {
                   }}
                 />
                 
-                {/* Inner circle with theme-aware background */}
+                {/* Inner circle with theme-aware background - sized to fit text snugly */}
                 <div 
-                  className="relative w-44 h-44 rounded-full flex flex-col items-center justify-center bg-background/80 dark:bg-black/60"
+                  className="relative rounded-full flex flex-col items-center justify-center bg-background/80 dark:bg-black/60"
                   style={{
+                    width: '200px',
+                    height: '200px',
                     backdropFilter: "blur(12px)",
                     border: "1px solid rgba(12, 142, 255, 0.4)",
                     boxShadow: "inset 0 2px 10px rgba(12, 142, 255, 0.1)"
                   }}
                 >
-                  {/* Brain icon */}
-                  <div className="text-[#0C8EFF] mb-3">
-                    <Brain className="w-8 h-8" strokeWidth={1.5} />
+                  {/* Brain icon with circular background */}
+                  <div className="relative mb-4">
+                    {/* Circle behind brain icon */}
+                    <div 
+                      className="absolute inset-0 w-12 h-12 rounded-full bg-[#0C8EFF]/10 border border-[#0C8EFF]/20"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        backdropFilter: 'blur(8px)'
+                      }}
+                    />
+                    <div className="relative text-[#0C8EFF] w-12 h-12 flex items-center justify-center">
+                      <Brain className="w-6 h-6" strokeWidth={1.5} />
+                    </div>
                   </div>
                   
-                  {/* Text content with proper casing */}
+                  {/* Text content with lowercase circle text */}
                   <div className="text-center">
                     <div className="text-xl font-semibold mb-1">
                       <span className="bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED] bg-clip-text text-transparent">
-                        Aria Fusion
+                        aria fusion
                       </span>
                     </div>
                     <div className="text-sm text-muted-foreground">Multi-Agent AI</div>
