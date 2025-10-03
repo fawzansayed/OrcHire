@@ -205,7 +205,7 @@ export function AgentFlowSection() {
               >
                 {/* Large Value */}
                 <div
-                  className={`kpi-number text-4xl md:text-5xl lg:text-6xl font-thin mb-2 transition-all duration-300 ${
+                  className={`kpi-number text-4xl md:text-5xl lg:text-6xl font-semibold mb-2 transition-all duration-300 ${
                     isInView ? 'scale-100' : 'scale-0'
                   }`}
                   style={{ 

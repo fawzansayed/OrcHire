@@ -110,48 +110,31 @@ export function ProductSection() {
           </p>
         </div>
 
-        {/* AI Process Flow Infographic - Standardized Card with Frost Effect */}
+        {/* AI Process Flow Infographic - Standardized Card */}
         <div className="relative max-w-7xl mx-auto">
-          {/* Main Container with Frost Effect */}
+          {/* Plain Card with Purple Border and Container Hover Effect */}
           <div 
             className="relative rounded-3xl p-8 md:p-12 overflow-hidden group transition-all duration-500"
             style={{
               border: "3px solid rgba(159, 98, 237, 0.3)"
             }}
           >
-            {/* Default Frost Effect - Matching AgentFlowSection */}
-            <div className="absolute inset-0 rounded-3xl">
-              <div 
-                className="absolute inset-0 rounded-3xl"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 35%, rgba(255, 255, 255, 0.015) 70%, rgba(255, 255, 255, 0.01) 100%)",
-                  backdropFilter: "blur(8px) saturate(110%)",
-                  WebkitBackdropFilter: "blur(8px) saturate(110%)"
-                }}
-              />
-              <div 
-                className="absolute inset-0 rounded-3xl"
-                style={{
-                  background: "radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.008) 80%)",
-                  backdropFilter: "blur(6px)",
-                  WebkitBackdropFilter: "blur(6px)"
-                }}
-              />
-            </div>
+            {/* Plain Background - Shows site background */}
+            <div className="absolute inset-0 rounded-3xl bg-transparent" />
 
-            {/* Hover Gradient Effect - Enhanced on Hover */}
+            {/* Container Hover Gradient Effect */}
             <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
               <div 
                 className="absolute inset-0 rounded-3xl"
                 style={{
-                  background: "linear-gradient(135deg, rgba(12, 142, 255, 0.15) 0%, rgba(159, 98, 237, 0.12) 35%, rgba(12, 142, 255, 0.08) 70%, transparent 100%)",
+                  background: "linear-gradient(135deg, rgba(12, 142, 255, 0.08) 0%, rgba(159, 98, 237, 0.06) 35%, rgba(12, 142, 255, 0.04) 70%, transparent 100%)",
                   filter: "blur(0.5px)"
                 }}
               />
               <div 
                 className="absolute inset-0 rounded-3xl"
                 style={{
-                  background: "radial-gradient(ellipse at top right, rgba(12, 142, 255, 0.1) 0%, rgba(159, 98, 237, 0.06) 40%, transparent 80%)"
+                  background: "radial-gradient(ellipse at top right, rgba(12, 142, 255, 0.06) 0%, rgba(159, 98, 237, 0.03) 40%, transparent 80%)"
                 }}
               />
             </div>
@@ -321,7 +304,7 @@ export function ProductSection() {
         </div>
 
         <div
-          className={`grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 max-w-4xl mx-auto transition-all duration-600 delay-[1.5s] ${
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-3xl mx-auto transition-all duration-600 delay-[1.5s] ${
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
@@ -329,7 +312,6 @@ export function ProductSection() {
             { label: "Automation", value: "100", suffix: "%" },
             { label: "Accuracy", value: "98", suffix: "%" },
             { label: "Speed", value: "10x", suffix: "" },
-            { label: "Intelligence", value: "AI", suffix: "" },
           ].map((metric, index) => {
             return (
               <div
@@ -343,7 +325,7 @@ export function ProductSection() {
               >
                 {/* Large Value */}
                 <div
-                  className={`kpi-number text-4xl md:text-5xl lg:text-6xl font-thin mb-2 transition-all duration-300 ${
+                  className={`kpi-number text-4xl md:text-5xl lg:text-6xl font-semibold mb-2 transition-all duration-300 ${
                     isInView ? 'scale-100' : 'scale-0'
                   }`}
                   style={{ 
