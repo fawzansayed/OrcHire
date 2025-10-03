@@ -13,21 +13,21 @@ export function Footer({ onNavigate }: FooterProps) {
       links: [
         { name: "Pricing", page: "pricing" },
         { name: "Comparison", page: "comparison" },
-        { name: "Calculate ROI", page: "roi-calculator" },
+        // { name: "Calculate ROI", page: "roi-calculator" },
       ],
     },
-    {
-      title: "Resources",
-      links: [
-        { name: "Knowledge Base", page: "resources" },
-        { name: "Press", page: "press" },
-      ],
-    },
+    // {
+    //   title: "Resources",
+    //   links: [
+    //     { name: "Knowledge Base", page: "resources" },
+    //     { name: "Press", page: "press" },
+    //   ],
+    // },
     {
       title: "Company",
       links: [
         { name: "About", page: "about" },
-        { name: "Careers", page: "careers" },
+        // { name: "Careers", page: "careers" },
         { name: "Contact Us", page: "contact" },
       ],
     },

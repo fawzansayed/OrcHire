@@ -124,14 +124,6 @@ export function SecurityComplianceSection() {
 
           {/* Compliance Certifications */}
           <div className={`mb-20 transition-all duration-1000 delay-200 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="text-center mb-12">
-              <div className="inline-block p-[1px] bg-gradient-to-r from-[#0C8EFF]/60 via-[#9F62ED]/60 to-[#0C8EFF]/60 rounded-full shadow-lg mb-6">
-                <div className="flex items-center bg-background/80 backdrop-blur-xl text-foreground px-4 py-2 rounded-full text-sm font-medium border-0 group hover:scale-105 transition-all duration-300">
-                  <CheckCircle className="w-4 h-4 text-foreground group-hover:text-[#0C8EFF] transition-colors duration-300 mr-2" strokeWidth={1.5} />
-                  <span className="text-foreground font-medium">Certified & Compliant</span>
-                </div>
-              </div>
-            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {certifications.map((cert, index) => {

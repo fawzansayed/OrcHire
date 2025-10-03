@@ -69,17 +69,19 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       {/* Background */}
       <div className="absolute inset-0">
         <div
-          className="absolute top-1/4 left-1/3 w-72 h-72 md:w-96 md:h-96 bg-gradient-to-br from-[#0C8EFF]/8 via-[#9F62ED]/4 to-[#0C8EFF]/6 rounded-full blur-3xl animate-pulse-slow"
+          className="absolute top-1/3 left-1/3 w-72 h-72 md:w-96 md:h-96 bg-gradient-to-br from-[#0C8EFF]/8 via-[#9F62ED]/4 to-[#0C8EFF]/6 rounded-full blur-3xl animate-pulse-slow"
+          style={{ marginTop: '80px' }}
         />
         <div
-          className="absolute top-2/3 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#9F62ED]/8 via-[#0C8EFF]/4 to-[#9F62ED]/6 rounded-full blur-3xl animate-pulse-slow-delayed"
+          className="absolute top-3/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#9F62ED]/8 via-[#0C8EFF]/4 to-[#9F62ED]/6 rounded-full blur-3xl animate-pulse-slow-delayed"
+          style={{ marginTop: '60px' }}
         />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center mb-8 md:mb-12 lg:mb-16">
         {/* Live Badge */}
         <div
-          className={`mb-6 md:mb-8 mt-16 md:mt-20 lg:mt-24 transition-all duration-600 ${
+          className={`mb-6 md:mb-8 mt-20 md:mt-24 lg:mt-28 transition-all duration-600 ${
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
@@ -120,7 +122,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           }`}
         >
           The world's most advanced multi-agent hiring intelligence built by
-          global recruiters, for recruiters - redefining hiring.
+          global recruiters, for recruiters — redefining hiring.
         </p>
       </div>
 
@@ -132,11 +134,9 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <button
-            onClick={() => onNavigate("testimonials")}
-            className="text-sm md:text-base font-semibold text-foreground mb-8 transition-colors duration-300 group bg-background/60 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl border border-border/30"
+            className="text-sm md:text-base font-semibold text-foreground mb-8 transition-colors duration-300 bg-background/60 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl border border-border/30"
           >
             <span>Trusted by forward-thinking companies</span>
-            <ArrowRight className="w-4 h-4 inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
         </div>
 

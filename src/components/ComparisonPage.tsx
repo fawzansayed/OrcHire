@@ -20,10 +20,12 @@ import {
   Sparkles,
   Zap
 } from "lucide-react";
-// import orchireLogo from "@/assets/orchire-logo.png";
-// import traditionalLogo from "@/assets/traditional-logo.png";
 
-export function ComparisonPage() {
+interface ComparisonPageProps {
+  onNavigate: (page: string) => void
+}
+
+export function ComparisonPage({ onNavigate }: ComparisonPageProps) {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
@@ -328,7 +330,12 @@ export function ComparisonPage() {
               <p className="text-muted-foreground mb-6 max-w-md">
                Join forward-thinking companies that have already made the switch to AI-powered recruitment.
               </p>
-              <Button className="bg-foreground text-background hover:bg-foreground/90">Start Free Trial</Button>
+              <Button 
+                className="bg-foreground text-background hover:bg-foreground/90"
+                onClick={() => onNavigate("contact")}
+              >
+                Book a Demo
+              </Button>
             </div>
           </motion.div>
         </div>

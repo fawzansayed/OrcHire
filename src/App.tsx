@@ -138,7 +138,7 @@ export default function App() {
         return (
           <main className="relative">
             <Suspense fallback={<LoadingSpinner />}>
-              <ComparisonPage />
+              <ComparisonPage onNavigate={setCurrentPage}/>
               <Footer onNavigate={setCurrentPage} />
             </Suspense>
           </main>
