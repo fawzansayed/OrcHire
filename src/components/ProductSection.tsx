@@ -139,34 +139,6 @@ export function ProductSection() {
               />
             </div>
 
-            {/* Section Label Badge */}
-            <div
-              className={`flex items-center justify-center gap-2 mb-8 transition-all duration-600 delay-500 ${
-                isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-              }`}
-            >
-              <div
-                className="inline-flex items-center gap-2 bg-transparent px-4 py-2 rounded-full border border-muted-foreground/20 relative overflow-hidden group transition-all duration-500 hover:scale-105"
-              >
-                {/* Plain Background - Shows site background */}
-                <div className="absolute inset-0 rounded-full bg-transparent" />
-
-                {/* Hover Gradient Effect */}
-                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div 
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(12, 142, 255, 0.1) 0%, rgba(159, 98, 237, 0.08) 50%, transparent 100%)",
-                      filter: "blur(0.3px)"
-                    }}
-                  />
-                </div>
-
-                <Zap className="w-4 h-4 text-foreground transition-colors duration-300 group-hover:text-[#0C8EFF] relative z-10" />
-                <span className="text-sm font-medium text-foreground/80 relative z-10">Autonomous AI Process</span>
-              </div>
-            </div>
-
             {/* Process Flow Container */}
             <div className="relative">
               {/* Process Steps - Clean Design */}
@@ -259,28 +231,6 @@ export function ProductSection() {
                           transform: "translateX(-50%)",
                         }}
                       >
-                        {/* Corner squares that appear on hover */}
-                        {[0, 1, 2, 3].map((corner) => (
-                          <div
-                            key={corner}
-                            className={`absolute w-2 h-2 border border-[#0C8EFF]/60 bg-[#0C8EFF]/20 transition-all duration-200 ${
-                              activeStep === index ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                            }`}
-                            style={{
-                              top: corner < 2 ? "0" : "100%",
-                              left: corner % 2 === 0 ? "0" : "100%",
-                              transform:
-                                corner < 2
-                                  ? corner % 2 === 0
-                                    ? "translate(0, 0)"
-                                    : "translate(-100%, 0)"
-                                  : corner % 2 === 0
-                                    ? "translate(0, -100%)"
-                                    : "translate(-100%, -100%)",
-                              transitionDelay: `${corner * 0.05}s`
-                            }}
-                          />
-                        ))}
                       </div>
                     </div>
                   )
