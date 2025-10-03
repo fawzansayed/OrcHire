@@ -99,7 +99,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'
           }`}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 leading-tight bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 leading-relaxed bg-gradient-to-r from-[#0C8EFF] via-[#9F62ED] to-[#0C8EFF] bg-clip-text text-transparent">
             Hiring That Thinks Ahead
           </h1>
           <div className="text-base sm:text-lg md:text-2xl lg:text-3xl mb-4 md:mb-6 flex flex-wrap justify-center gap-2">

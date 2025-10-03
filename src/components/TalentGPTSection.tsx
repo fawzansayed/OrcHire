@@ -121,7 +121,7 @@ export function TalentGPTSection() {
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED] bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#0C8EFF] to-[#9F62ED] bg-clip-text text-transparent leading-relaxed pb-2">
             AI-Powered Talent Discovery
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
