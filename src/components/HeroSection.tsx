@@ -122,7 +122,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
           }`}
         >
           The world's most advanced multi-agent hiring intelligence built by
-          global recruiters, for recruiters — redefining hiring.
+          global recruiters, for recruiters - redefining hiring.
         </p>
       </div>
 
