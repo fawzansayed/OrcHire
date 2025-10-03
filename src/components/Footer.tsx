@@ -26,7 +26,7 @@ export function Footer({ onNavigate }: FooterProps) {
     {
       title: "Company",
       links: [
-        { name: "About", page: "about" },
+        // { name: "About", page: "about" },
         // { name: "Careers", page: "careers" },
         { name: "Contact Us", page: "contact" },
       ],
